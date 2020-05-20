@@ -11,8 +11,5 @@ class billData {
         @PrimaryKey
         var id:Int = 0
 
-        @ColumnInfo(name = "seconds")
-        var seconds: Int = 0
-
 }
 

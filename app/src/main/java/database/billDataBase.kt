@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import database.billData
 
-@Database(entities = [billData::class], version = 2, exportSchema = false)
+@Database(entities = [billData::class], version = 3, exportSchema = false)
 abstract class billDataBase : RoomDatabase() {
 
     abstract val billDao: billDao
@@ -24,7 +24,7 @@ abstract class billDataBase : RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         billDataBase::class.java,
-                        "timers"
+                        "bills"
                     ).allowMainThreadQueries()
                         .fallbackToDestructiveMigration()
                         .build()
