@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/list_view_company_name"
+        android:id="@+id/archiv_title"
         android:layout_width="123dp"
         android:layout_height="45dp"
         android:text="@string/archiv_title"

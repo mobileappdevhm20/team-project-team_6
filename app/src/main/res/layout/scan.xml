@@ -4,4 +4,13 @@
     android:background="@color/colorBackground"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/detailed_bill_title"
+        android:layout_width="94dp"
+        android:layout_height="43dp"
+        android:text="@string/scan_title"
+        android:textColor="@color/colorFontWhite"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

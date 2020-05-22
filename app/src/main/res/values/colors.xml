@@ -6,5 +6,6 @@
     <!-- Own Colors defined. -->
     <color name="colorBackground">#E5E5E5</color>
     <color name="colorFontWhite">#FFFFFF</color>
+    <color name="colorFontBlack">#000000</color>
     <color name="colorBackgroundFloatingButton">#4BB8F5</color>
 </resources>

@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/detailed_bill_title"
-        android:layout_width="233dp"
+        android:layout_width="227dp"
         android:layout_height="42dp"
         android:text="@string/placeholder"
         android:textColor="@color/colorFontWhite"

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/colorBackground"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/statistic_month_overview"
+        android:layout_width="171dp"
+        android:layout_height="32dp"
+        android:text="@string/placeholder"
+        android:textColor="@color/colorFontBlack"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/statistic_month_overview_sum"
+        android:layout_width="171dp"
+        android:layout_height="32dp"
+        android:text="@string/placeholder"
+        android:textColor="@color/colorFontBlack"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="237dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
