@@ -9,7 +9,7 @@ interface billDao {
     fun insert(bill: billData):Long
 
     @Update
-    fun update(bill: billData)
+    fun update(bill: billData):Int
 
     @Delete
     fun delete(bill: billData)

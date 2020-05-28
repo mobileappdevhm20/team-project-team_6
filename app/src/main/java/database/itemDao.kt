@@ -10,7 +10,7 @@ interface itemDao {
     fun insert(item: itemData):Long
 
     @Update
-    fun update(item: itemData)
+    fun update(item: itemData):Int
 
     @Delete
     fun delete(item: itemData)

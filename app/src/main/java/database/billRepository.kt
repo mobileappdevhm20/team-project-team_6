@@ -19,15 +19,16 @@ class billRepository(application: Application){
     }
 
 
-    fun insert(billData: billData, itemData: itemData){
+    fun insert(billData: billData, itemData: itemData):Long{
         var itemID = itemDao.insert(itemData)
         billData.id = itemID.toInt()
-        billDao.insert(billData)
+        return billDao.insert(billData)
     }
 
-    fun update(billData: billData, itemData: itemData){
-        itemDao.update(itemData)
-        billDao.update(billData)
+    fun update(billData: billData, itemData: itemData):Int{
+        var itemID = itemDao.update(itemData)
+        billData.id = itemID.toInt()
+        return billDao.update(billData)
     }
 
     fun delete(billData: billData, itemData: itemData){
