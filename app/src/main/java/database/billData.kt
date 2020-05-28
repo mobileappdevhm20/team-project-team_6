@@ -21,7 +21,7 @@ class billData {
 
         var salesTax:Int = 0
 
-        var time:Date? = null
+        var time:Int = 0
 
 
 }
