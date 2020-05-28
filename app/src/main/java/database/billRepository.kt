@@ -20,7 +20,8 @@ class billRepository(application: Application){
 
 
     fun insert(billData: billData, itemData: itemData){
-        itemDao.insert(itemData)
+        var itemID = itemDao.insert(itemData)
+        billData.id = itemID.toInt()
         billDao.insert(billData)
     }
 

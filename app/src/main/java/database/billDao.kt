@@ -6,7 +6,7 @@ import androidx.room.*
 interface billDao {
 
     @Insert
-    fun insert(bill: billData)
+    fun insert(bill: billData):Long
 
     @Update
     fun update(bill: billData)

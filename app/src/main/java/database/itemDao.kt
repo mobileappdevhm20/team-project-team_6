@@ -7,7 +7,7 @@ import androidx.room.*
 interface itemDao {
 
     @Insert
-    fun insert(item: itemData)
+    fun insert(item: itemData):Long
 
     @Update
     fun update(item: itemData)
