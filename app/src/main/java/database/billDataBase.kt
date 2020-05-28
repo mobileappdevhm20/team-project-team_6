@@ -6,10 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import database.billData
 
-@Database(entities = [billData::class], version = 3, exportSchema = false)
+@Database(entities = [billData::class, itemData::class], version = 3, exportSchema = false)
 abstract class billDataBase : RoomDatabase() {
 
     abstract val billDao: billDao
+    abstract val itemDao: itemDao
 
     companion object {
 

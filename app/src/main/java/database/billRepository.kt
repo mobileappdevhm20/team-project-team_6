@@ -10,16 +10,29 @@ import kotlin.coroutines.CoroutineContext
 class billRepository(application: Application){
 
     private var billDao: billDao
+    private var itemDao: itemDao
 
     init {
         val db = billDataBase.getInstance(application)
         billDao = db.billDao
+        itemDao = db.itemDao
     }
 
 
-    fun update(billData: billData) = billDao.update(billData)
+    fun insert(billData: billData, itemData: itemData){
+        itemDao.insert(itemData)
+        billDao.insert(billData)
+    }
 
-    fun delete(billData: billData) = billDao.delete(billData)
+    fun update(billData: billData, itemData: itemData){
+        itemDao.update(itemData)
+        billDao.update(billData)
+    }
+
+    fun delete(billData: billData, itemData: itemData){
+        itemDao.delete(itemData)
+        billDao.delete(billData)
+    }
 
 
 }
