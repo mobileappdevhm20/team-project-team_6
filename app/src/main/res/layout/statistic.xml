@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/detailed_bill_title"
+        android:id="@+id/statistic_title"
         android:layout_width="168dp"
         android:layout_height="40dp"
         android:text="@string/statistic_title"
