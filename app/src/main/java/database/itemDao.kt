@@ -24,4 +24,9 @@ interface itemDao {
     @Query("SELECT * FROM items")
     fun getAllBills(): List<itemData>
 
+    @Query("DELETE FROM items WHERE billId = :key")
+    fun deleteByBillId(key:Int)
+
+    @Query("SELECT * from items WHERE billId = :key")
+    fun getItemsByBillId(key: Int): List<itemData>
 }

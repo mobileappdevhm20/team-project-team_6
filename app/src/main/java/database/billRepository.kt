@@ -19,22 +19,43 @@ class billRepository(application: Application){
     }
 
 
-    fun insert(billData: billData, itemData: itemData):Long{
-        var itemID = itemDao.insert(itemData)
-        billData.id = itemID.toInt()
-        return billDao.insert(billData)
+    fun insert(bill: bill):Long{
+        var insertBillData = billData(address = bill.address, companyName = bill.companyName, salesTax = bill.salesTax, time = bill.time)
+        var billID = billDao.insert(insertBillData)
+        for(item in bill.items){
+            var insertItem = itemData(name = item.name, billId = billID.toInt(), amount = item.amout, singlePrice =item.singlePrice,totalPrice = item.totalPrice)
+        }
+        return billID
     }
 
-    fun update(billData: billData, itemData: itemData):Int{
-        var itemID = itemDao.update(itemData)
-        billData.id = itemID.toInt()
+    fun updateItem(billData: billData):Int{
         return billDao.update(billData)
     }
 
-    fun delete(billData: billData, itemData: itemData){
+    fun updateBill( itemData: itemData): Int{
+        return itemDao.update(itemData)
+    }
+
+
+    fun deleteItem(itemData: itemData) {
         itemDao.delete(itemData)
+    }
+
+    fun deleteBill(billData: billData){
+        itemDao.deleteByBillId(billData.id)
         billDao.delete(billData)
     }
 
+    fun getItem(id : Int): itemData{
+        return itemDao.get(id)
+    }
+
+    fun getBillData(id : Int) : billData{
+        return billDao.get(id)
+    }
+
+    fun getallItemsfromBillID(billID : Int) :List<itemData>{
+        return itemDao.getItemsByBillId(billID)
+    }
 
 }
