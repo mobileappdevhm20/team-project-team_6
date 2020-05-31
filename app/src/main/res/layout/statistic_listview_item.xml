@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/list_view_company_name"
+        android:id="@+id/statistic_list_view_item_month"
         android:layout_width="225dp"
         android:layout_height="42dp"
         android:text="@string/placeholder"
@@ -35,7 +35,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/list_view_month"
+        android:id="@+id/statistic_list_view_item_price"
         android:layout_width="158dp"
         android:layout_height="18dp"
         android:text="@string/placeholder"
@@ -45,7 +45,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toEndOf="@+id/list_view_company_name"
+        app:layout_constraintStart_toEndOf="@+id/statistic_list_view_item_month"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022" />
 

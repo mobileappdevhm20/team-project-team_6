@@ -5,4 +5,6 @@
     <string name="scan_title">SCAN</string>
     <string name="statistic_title">STATISTIC</string>
     <string name="filter_title">FILTER</string>
+    <string name="details_bill_delete">DELETE</string>
+    <string name="scan_button">SCAN</string>
 </resources>
