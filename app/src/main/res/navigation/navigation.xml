@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation">
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation"
+    app:startDestination="@id/archiveFragment">
 
+    <fragment
+        android:id="@+id/archiveFragment"
+        android:name="com.example.easybill.ArchiveFragment"
+        android:label="ArchiveFragment" >
+        <action
+            android:id="@+id/action_archiveFragment_to_scanFragment"
+            app:destination="@id/scanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scanFragment"
+        android:name="com.example.easybill.ScanFragment"
+        android:label="ScanFragment" />
 </navigation>

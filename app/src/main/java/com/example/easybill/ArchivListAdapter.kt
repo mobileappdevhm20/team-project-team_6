@@ -1,10 +1,16 @@
 package com.example.easybill
 
 import android.app.Activity
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-class ArchivListAdapter(private val context: Activity, private val company: Array<String>, private val date: Array<String>,  private val price: Array<String>)
+import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.RecyclerView
+
+
+class ArchivListAdapter(private val context: FragmentActivity, private val company: Array<String>, private val date: Array<String>, private val price: Array<String>)
     : ArrayAdapter<String>(context, R.layout.archiv_listview_item, company) {
 
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
