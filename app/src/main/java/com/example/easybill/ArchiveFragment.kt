@@ -30,17 +30,16 @@ class ArchiveFragment : Fragment() {
             inflater, R.layout.archiv, container, false)
 
         val archivListAdapter = ArchivListAdapter(this.requireActivity(), testCompany, testDate, testPrice)
+
         binding.archivListItems.adapter = archivListAdapter
-
-
         binding.archivListItems.setOnItemClickListener(){adapterView, view, position, id ->
             val itemAtPos = adapterView.getItemAtPosition(position)
             val itemIdAtPos = adapterView.getItemIdAtPosition(position)
-            Toast.makeText(this.activity, "Click on item at $itemAtPos its item id $itemIdAtPos", Toast.LENGTH_LONG).show()
+            //Toast.makeText(this.activity, "Click on item at $itemAtPos its item id $itemIdAtPos", Toast.LENGTH_LONG).show()
+            view.findNavController().navigate(R.id.action_archiveFragment_to_detailedBillFragment)
         }
 
         binding.buttonAdd.setOnClickListener {view :View ->
-            // view.findNavController().navigate(TimerListFragmentDirections.actionTimerListFragmentToEditTimerFragment(timerId))
             view.findNavController().navigate(R.id.action_archiveFragment_to_scanFragment)
         }
 
