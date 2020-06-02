@@ -4,27 +4,27 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import database.billData
 
-@Database(entities = [billData::class, itemData::class], version = 6, exportSchema = false)
-abstract class billDataBase : RoomDatabase() {
+@Database(entities = [BillData::class, ItemData::class], version = 6, exportSchema = false)
+abstract class BillDatabase : RoomDatabase() {
 
-    abstract val billDao: billDao
-    abstract val itemDao: itemDao
+    abstract val billDao: BillDao
+
+    abstract val itemDao: ItemDao
 
     companion object {
 
         @Volatile
-        private var INSTANCE: billDataBase? = null
+        private var INSTANCE: BillDatabase? = null
 
-        fun getInstance(context: Context) :billDataBase {
+        fun getInstance(context: Context): BillDatabase {
             synchronized(lock = this) {
                 var instance = INSTANCE
 
-                if(instance == null) {
+                if (instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        billDataBase::class.java,
+                        BillDatabase::class.java,
                         "bills"
                     ).allowMainThreadQueries()
                         .fallbackToDestructiveMigration()
