@@ -42,4 +42,4 @@ jobs:
       script: ./gradlew assembleDebug
     - stage: test
       script: ./gradlew test
-    - script: ./gradlew ktlint
+    - script: ./gradlew ktlintReleaseFormat
