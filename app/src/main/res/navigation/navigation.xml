@@ -10,9 +10,24 @@
         <action
             android:id="@+id/action_archiveFragment_to_scanFragment"
             app:destination="@id/scanFragment" />
+        <action
+            android:id="@+id/action_archiveFragment_to_detailedBillFragment"
+            app:destination="@id/detailedBillFragment" />
     </fragment>
     <fragment
         android:id="@+id/scanFragment"
         android:name="com.example.easybill.ScanFragment"
-        android:label="ScanFragment" />
+        android:label="ScanFragment" >
+        <action
+            android:id="@+id/action_scanFragment_to_archiveFragment"
+            app:destination="@id/archiveFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedBillFragment"
+        android:name="com.example.easybill.DetailedBillFragment"
+        android:label="DetailedBillFragment" >
+        <action
+            android:id="@+id/action_detailedBillFragment_to_archiveFragment"
+            app:destination="@id/archiveFragment" />
+    </fragment>
 </navigation>
