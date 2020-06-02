@@ -24,8 +24,8 @@ class MainActivity : AppCompatActivity() {
         archiv_listItems.setOnItemClickListener(){adapterView, view, position, id ->
             val itemAtPos = adapterView.getItemAtPosition(position)
             val itemIdAtPos = adapterView.getItemIdAtPosition(position)
-            Toast.makeText(this, "Click on item at $itemAtPos its item id $itemIdAtPos", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Click on item at $itemAtPos" +
+                    " its item id $itemIdAtPos", Toast.LENGTH_LONG).show()
         }
-
     }
 }
