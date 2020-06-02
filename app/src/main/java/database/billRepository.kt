@@ -19,7 +19,7 @@ class billRepository(application: Application){
     }
 
 
-    fun insert(bill: bill):Long{
+    fun insert(bill: bill):MutableList<Long>{
         var insertBillData = billData(address = bill.address, companyName = bill.companyName, salesTax = bill.salesTax, time = bill.time)
         var billID = billDao.insert(insertBillData)
         var returnID = mutableListOf<Long>(billID)
@@ -28,7 +28,7 @@ class billRepository(application: Application){
             var itemID = itemDao.insert(insertItem)
             returnID.add(itemID)
         }
-        return billID
+        return returnID
     }
 
     fun updateItem(billData: billData):Int{
