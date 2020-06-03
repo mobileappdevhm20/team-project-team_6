@@ -4,7 +4,7 @@ import androidx.room.TypeConverter
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
-import java.util.*
+import java.util.TimeZone
 
 class Converters {
     @TypeConverter

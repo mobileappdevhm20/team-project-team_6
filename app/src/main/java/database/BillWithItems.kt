@@ -3,7 +3,7 @@ package database
 import androidx.room.Embedded
 import androidx.room.Relation
 
-data class BillWithItems (
+data class BillWithItems(
     @Embedded val bill: Bill,
 
     @Relation(parentColumn = "id", entityColumn = "billId")

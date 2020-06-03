@@ -23,5 +23,4 @@ interface ItemDao {
 
     @Query("SELECT * FROM item")
     fun getAll(): List<Item>
-
 }

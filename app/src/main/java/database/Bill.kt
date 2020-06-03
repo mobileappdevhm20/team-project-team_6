@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import java.time.LocalDateTime
 
 @Entity(tableName = "bill")
-data class Bill (
+data class Bill(
 
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0L,
