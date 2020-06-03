@@ -29,14 +29,13 @@ class ArchiveFragment : Fragment() {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.archiv, container, false)
 
-        val archivListAdapter = ArchivListAdapter(this.requireActivity(), testCompany, testDate, testPrice)
+        val archiveListAdapter = ArchivListAdapter(this.requireActivity(), testCompany, testDate, testPrice)
 
-        binding.archivListItems.adapter = archivListAdapter
+        binding.archivListItems.adapter = archiveListAdapter
         binding.archivListItems.setOnItemClickListener(){adapterView, view, position, id ->
-            val itemAtPos = adapterView.getItemAtPosition(position)
-            val itemIdAtPos = adapterView.getItemIdAtPosition(position)
-            //Toast.makeText(this.activity, "Click on item at $itemAtPos its item id $itemIdAtPos", Toast.LENGTH_LONG).show()
-            view.findNavController().navigate(R.id.action_archiveFragment_to_detailedBillFragment)
+            // TODO read bill id and pass it to the detailed bill fragment
+            val billID: Long = adapterView.getItemIdAtPosition(position)
+            view.findNavController().navigate(ArchiveFragmentDirections.actionArchiveFragmentToDetailedBillFragment(billID))
         }
 
         binding.buttonAdd.setOnClickListener {view :View ->
@@ -44,7 +43,6 @@ class ArchiveFragment : Fragment() {
         }
 
         binding.buttonMenu.setOnClickListener {
-            // open filter menu
             if (binding.buttonsList.visibility == View.INVISIBLE) {
                 openButtonMenu()
             } else {
