@@ -10,26 +10,18 @@ import androidx.room.Update
 interface ItemDao {
 
     @Insert
-    fun insert(item: ItemData): Long
+    fun insert(item: Item): Long
 
     @Update
-    fun update(item: ItemData): Int
+    fun update(item: Item)
 
     @Delete
-    fun delete(item: ItemData)
+    fun delete(item: Item)
 
-    @Query("DELETE FROM items")
-    fun clear()
+    @Query("SELECT * from item WHERE id = :id")
+    fun getById(id: Long): Item
 
-    @Query("SELECT * from items WHERE id = :key")
-    fun get(key: Int): ItemData
+    @Query("SELECT * FROM item")
+    fun getAll(): List<Item>
 
-    @Query("SELECT * FROM items")
-    fun getAllBills(): List<ItemData>
-
-    @Query("DELETE FROM items WHERE billId = :key")
-    fun deleteByBillId(key: Int)
-
-    @Query("SELECT * from items WHERE billId = :key")
-    fun getItemsByBillId(key: Int): List<ItemData>
 }

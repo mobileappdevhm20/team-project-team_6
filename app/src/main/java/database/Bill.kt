@@ -1,15 +1,21 @@
 package database
 
-class Bill(
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import java.time.LocalDateTime
 
-    var address: String,
+@Entity(tableName = "bill")
+data class Bill (
 
-    var companyName: String,
+    @PrimaryKey(autoGenerate = true)
+    var id: Long = 0L,
 
-    var salesTax: Int,
+    var address: String = "",
 
-    var time: Int,
+    var storeName: String = "",
 
-    var items: List<Items>
+    var salesTax: Double = 0.0,
+
+    var time: LocalDateTime = LocalDateTime.now()
 
 )

@@ -1,29 +1,26 @@
 package database
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface BillDao {
 
     @Insert
-    fun insert(bill: BillData): Long
+    fun insert(bill: Bill): Long
 
     @Update
-    fun update(bill: BillData): Int
+    fun update(bill: Bill)
 
     @Delete
-    fun delete(bill: BillData)
+    fun delete(bill: Bill)
 
-    @Query("DELETE FROM bills")
-    fun clear()
+    @Query("SELECT * from bill WHERE id = :key")
+    fun getById(key: Long): Bill
 
-    @Query("SELECT * FROM bills")
-    fun getAllBills(): List<BillData>
+    @Query("SELECT * FROM bill")
+    fun getAll(): List<Bill>
 
-    @Query("SELECT * from bills WHERE id = :key")
-    fun get(key: Int): BillData
+    @Transaction
+    @Query("SELECT * from bill WHERE id = :key")
+    fun getByIdWithItems(key: Long): BillWithItems
 }
