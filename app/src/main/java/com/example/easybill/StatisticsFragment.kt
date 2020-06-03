@@ -1,13 +1,11 @@
 package com.example.easybill
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
-import com.example.easybill.databinding.FilterBinding
+import androidx.fragment.app.Fragment
 import com.example.easybill.databinding.StatisticBinding
 
 /**
@@ -16,7 +14,8 @@ import com.example.easybill.databinding.StatisticBinding
 class StatisticsFragment : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
@@ -25,5 +24,4 @@ class StatisticsFragment : Fragment() {
 
         return binding.root
     }
-
 }
