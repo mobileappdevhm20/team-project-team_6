@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import com.example.easybill.databinding.FilterBinding
 
 /**
@@ -21,6 +22,11 @@ class FilterFragment : Fragment() {
 
         val binding: FilterBinding = DataBindingUtil.inflate(
             inflater, R.layout.filter, container, false)
+
+        binding.applyButton.setOnClickListener {
+            // TODO check if everything is right
+            it.findNavController().navigate(R.id.action_filterFragment_to_archiveFragment)
+        }
 
         return binding.root
     }
