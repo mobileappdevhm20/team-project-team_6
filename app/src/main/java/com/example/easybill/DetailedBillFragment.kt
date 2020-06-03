@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.easybill.databinding.DetailedBillBinding
@@ -16,6 +17,8 @@ import com.example.easybill.databinding.ScanBinding
  */
 class DetailedBillFragment : Fragment() {
 
+    var billID: Long = -1
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,6 +27,10 @@ class DetailedBillFragment : Fragment() {
         val binding : DetailedBillBinding = DataBindingUtil.inflate(
             inflater, R.layout.detailed_bill, container, false
         )
+
+        val args = DetailedBillFragmentArgs.fromBundle(requireArguments())
+        billID = args.billID
+        // TODO get data from database using bill id and display it
 
         binding.datailedBillDeleteButton.setOnClickListener {
             // TODO delete bill from database
