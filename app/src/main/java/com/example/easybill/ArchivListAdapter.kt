@@ -1,13 +1,18 @@
 package com.example.easybill
 
-import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.fragment.app.FragmentActivity
 
-class ArchivListAdapter(private val context: Activity, private val company: Array<String>, private val date: Array<String>,  private val price: Array<String>)
-    : ArrayAdapter<String>(context, R.layout.archiv_listview_item, company) {
+class ArchivListAdapter(
+    private val context: FragmentActivity,
+    private val company: Array<String>,
+    private val date: Array<String>,
+    private val price: Array<String>
+) :
+    ArrayAdapter<String>(context, R.layout.archiv_listview_item, company) {
 
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
         val inflater = context.layoutInflater

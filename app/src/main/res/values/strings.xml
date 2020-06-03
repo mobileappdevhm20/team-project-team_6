@@ -8,7 +8,6 @@
     <string name="scan_button">SCAN</string>
     <string name="filter_button">APPLY</string>
     <string name="filter_title">FILTER</string>
-
     <string name="filter_price">PRICE: </string>
     <string name="filter_time_from">TIME FROM:</string>
     <string name="filter_time_to">TIME TO:</string>
