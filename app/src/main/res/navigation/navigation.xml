@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_detailedBillFragment_to_archiveFragment"
             app:destination="@id/archiveFragment" />
+        <argument
+            android:name="billID"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/filterFragment"
