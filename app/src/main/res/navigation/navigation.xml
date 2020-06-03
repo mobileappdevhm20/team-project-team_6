@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_archiveFragment_to_detailedBillFragment"
             app:destination="@id/detailedBillFragment" />
+        <action
+            android:id="@+id/action_archiveFragment_to_filterFragment"
+            app:destination="@id/filterFragment" />
+        <action
+            android:id="@+id/action_archiveFragment_to_statisticsFragment"
+            app:destination="@id/statisticsFragment" />
     </fragment>
     <fragment
         android:id="@+id/scanFragment"
@@ -28,6 +34,22 @@
         android:label="DetailedBillFragment" >
         <action
             android:id="@+id/action_detailedBillFragment_to_archiveFragment"
+            app:destination="@id/archiveFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.example.easybill.FilterFragment"
+        android:label="FilterFragment" >
+        <action
+            android:id="@+id/action_filterFragment_to_archiveFragment"
+            app:destination="@id/archiveFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.example.easybill.StatisticsFragment"
+        android:label="StatisticsFragment" >
+        <action
+            android:id="@+id/action_statisticsFragment_to_archiveFragment"
             app:destination="@id/archiveFragment" />
     </fragment>
 </navigation>
