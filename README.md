@@ -7,9 +7,17 @@ EasyBill helps you digitize, catalog and filter your bills and thus is the next 
 
 ## Prototype
 
-[Click me!](https://www.figma.com/file/U0r2xmu9Fyja9gI72Z8CTx/EasyBill)
+__[Click me!](https://www.figma.com/file/U0r2xmu9Fyja9gI72Z8CTx/EasyBill)__
 
-### Screenhots of our Prototype
+### Screenshots of our Prototype
+<div class="row">
+<img src="https://github.com/mobileappdevhm20/team-project-team_6/blob/develop/res_img/1.PNG" alt="drawing" width="180" height="350"/>
+<img src="https://github.com/mobileappdevhm20/team-project-team_6/blob/develop/res_img/2.PNG" alt="drawing" width="180"height="350"/>
+<img src="https://github.com/mobileappdevhm20/team-project-team_6/blob/develop/res_img/3.PNG" alt="drawing" width="180"height="350"/>
+<img src="https://github.com/mobileappdevhm20/team-project-team_6/blob/develop/res_img/4.PNG" alt="drawing" width="180"height="350"/>
+<img src="https://github.com/mobileappdevhm20/team-project-team_6/blob/develop/res_img/5.PNG" alt="drawing" width="180"height="350"/>
+</div>
+
 
 
 
