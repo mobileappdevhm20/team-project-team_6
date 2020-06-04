@@ -1,4 +1,4 @@
-package database
+package com.easybill.database
 
 import android.content.Context
 import androidx.room.Database
@@ -6,6 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
+/**
+ * Provides access to the database through a singleton.
+ */
 @Database(
     entities = [Bill::class, Item::class],
     version = 1,
@@ -14,8 +17,14 @@ import androidx.room.TypeConverters
 @TypeConverters(Converters::class)
 abstract class EasyBillDatabase : RoomDatabase() {
 
+    /**
+     * Getter for the BillDao.
+     */
     abstract fun getBillDao(): BillDao
 
+    /**
+     * Getter for the ItemDao.
+     */
     abstract fun getItemDao(): ItemDao
 
     companion object {
@@ -23,6 +32,9 @@ abstract class EasyBillDatabase : RoomDatabase() {
         @Volatile
         private var instance: EasyBillDatabase? = null
 
+        /**
+         * Provides thread-safe access to the EasyBillDatabase singleton-object.
+         */
         fun getInstance(context: Context): EasyBillDatabase? {
             val tmp = instance
             if (tmp != null)

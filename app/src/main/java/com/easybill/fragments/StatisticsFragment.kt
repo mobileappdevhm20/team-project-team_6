@@ -1,4 +1,4 @@
-package com.example.easybill
+package com.easybill.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.example.easybill.databinding.StatisticBinding
+import com.easybill.R
+import com.easybill.databinding.StatisticBinding
 
 /**
  * A simple [Fragment] subclass.

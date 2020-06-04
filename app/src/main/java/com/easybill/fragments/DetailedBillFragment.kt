@@ -1,4 +1,4 @@
-package com.example.easybill
+package com.easybill.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import com.example.easybill.databinding.DetailedBillBinding
+import com.easybill.R
+import com.easybill.databinding.DetailedBillBinding
 
 /**
  * A simple [Fragment] subclass.
@@ -26,7 +27,8 @@ class DetailedBillFragment : Fragment() {
             inflater, R.layout.detailed_bill, container, false
         )
 
-        val args = DetailedBillFragmentArgs.fromBundle(requireArguments())
+        val args =
+            DetailedBillFragmentArgs.fromBundle(requireArguments())
         billID = args.billID
         // TODO get data from database using bill id and display it
 
