@@ -1,4 +1,4 @@
-package database
+package com.easybill.database
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -7,6 +7,9 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 
+/**
+ * Provides CRUD-Operations to the Bill-Entity and BillWithItems-Types.
+ */
 @Dao
 interface BillDao {
 

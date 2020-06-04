@@ -1,4 +1,4 @@
-package database
+package com.easybill.database
 
 import android.content.Context
 import androidx.room.Room

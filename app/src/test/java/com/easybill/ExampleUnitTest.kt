@@ -1,4 +1,4 @@
-package com.example.easybill
+package com.easybill
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.example.easybill
+package com.easybill.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,17 +8,18 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import com.example.easybill.databinding.ArchivBinding
-import kotlinx.android.synthetic.main.archiv.*
+import com.easybill.ArchiveListAdapter
+import com.easybill.R
+import com.easybill.databinding.ArchivBinding
 
 /**
  * A simple [Fragment] subclass.
  */
 class ArchiveFragment : Fragment() {
 
-    val testCompany = arrayOf<String>("Oberpollinger", "Saturn", "H&M")
-    val testDate = arrayOf<String>("27.04.2020", "04.10.2019", "05.08.2019")
-    val testPrice = arrayOf<String>("295.00", "539.00", "74.98")
+    private val testCompany = arrayOf("Oberpollinger", "Saturn", "H&M")
+    private val testDate = arrayOf("27.04.2020", "04.10.2019", "05.08.2019")
+    private val testPrice = arrayOf("295.00", "539.00", "74.98")
     lateinit var binding: ArchivBinding
 
     override fun onCreateView(
@@ -29,19 +30,23 @@ class ArchiveFragment : Fragment() {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.archiv, container, false)
 
-        val archiveListAdapter = ArchivListAdapter(
+        val archiveListAdapter = ArchiveListAdapter(
             this.requireActivity(),
             testCompany,
             testDate,
-            testPrice)
+            testPrice
+        )
 
         binding.archivListItems.adapter = archiveListAdapter
         binding.archivListItems.setOnItemClickListener() { adapterView, view, position, id ->
             // TODO read bill id and pass it to the detailed bill fragment
             val billID: Long = adapterView.getItemIdAtPosition(position)
             view.findNavController()
-                .navigate(ArchiveFragmentDirections
-                    .actionArchiveFragmentToDetailedBillFragment(billID))
+                .navigate(
+                    ArchiveFragmentDirections.actionArchiveFragmentToDetailedBillFragment(
+                        billID
+                    )
+                )
         }
 
         binding.buttonAdd.setOnClickListener { view: View ->

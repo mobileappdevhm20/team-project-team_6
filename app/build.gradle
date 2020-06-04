@@ -10,7 +10,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.example.easybill"
+        applicationId "com.easybill"
         minSdkVersion 29
         targetSdkVersion 29
         versionCode 1

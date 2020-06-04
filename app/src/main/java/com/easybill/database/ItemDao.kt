@@ -1,4 +1,4 @@
-package database
+package com.easybill.database
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -6,6 +6,9 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 
+/**
+ * Provides CRUD-Operations to the Item-Entity.
+ */
 @Dao
 interface ItemDao {
 
