@@ -13,7 +13,8 @@ import com.easybill.R
 import com.easybill.databinding.ArchivBinding
 
 /**
- * A simple [Fragment] subclass.
+ * Displays the bill-archive. This is the first fragment that is shown to the user
+ * when the application is started.
  */
 class ArchiveFragment : Fragment() {
 
@@ -27,6 +28,7 @@ class ArchiveFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = DataBindingUtil.inflate(
             inflater, R.layout.archiv, container, false)
 
@@ -49,41 +51,62 @@ class ArchiveFragment : Fragment() {
                 )
         }
 
+        /*
+         * Navigate to ScanFragment
+         */
         binding.buttonAdd.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_archiveFragment_to_scanFragment)
         }
 
-        binding.buttonMenu.setOnClickListener {
-            if (binding.buttonsList.visibility == View.INVISIBLE) {
-                openButtonMenu()
-            } else {
-                closeButtonMenu()
-            }
-        }
-
+        /*
+         * Navigate to FilterFragment
+         */
         binding.buttonFilter.setOnClickListener {
             closeButtonMenu()
             it.findNavController().navigate(R.id.action_archiveFragment_to_filterFragment)
         }
 
+        /*
+         * Open/close menu
+         */
+        binding.buttonMenu.setOnClickListener {
+            onMenuButtonClicked()
+        }
+
+        /*
+         * Sort by date
+         */
         binding.buttonSortByDate.setOnClickListener {
-            // TODO get bills from database sorted by date
+            // TODO: get bills from database sorted by date
+            closeButtonMenu()
             Toast.makeText(this.activity, "Sorted by date", Toast.LENGTH_LONG).show()
-            closeButtonMenu()
         }
 
+        /*
+         * Sort by price
+         */
         binding.buttonSortByPrice.setOnClickListener {
-            // TODO get bills from database sorted by price
-            Toast.makeText(this.activity, "Sorted by price", Toast.LENGTH_LONG).show()
+            // TODO: get bills from database sorted by price
             closeButtonMenu()
+            Toast.makeText(this.activity, "Sorted by price", Toast.LENGTH_LONG).show()
         }
 
+        /*
+         * Navigate to statistics
+         */
         binding.buttonStatistics.setOnClickListener {
             closeButtonMenu()
             it.findNavController().navigate(R.id.action_archiveFragment_to_statisticsFragment)
         }
 
         return binding.root
+    }
+
+    private fun onMenuButtonClicked() {
+        if (binding.buttonsList.visibility == View.INVISIBLE)
+            openButtonMenu()
+        else
+            closeButtonMenu()
     }
 
     private fun openButtonMenu() {
