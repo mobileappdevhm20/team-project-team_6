@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:background="@color/colorBackground"
         android:layout_height="match_parent">
@@ -22,8 +21,8 @@
 
         <TextView
             android:id="@+id/detailed_bill_output"
-            android:layout_width="240dp"
-            android:layout_height="388dp"
+            android:layout_width="354dp"
+            android:layout_height="441dp"
             android:text="@string/placeholder"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,8 +31,11 @@
 
         <Button
             android:id="@+id/datailed_bill_delete_button"
-            android:layout_width="117dp"
-            android:layout_height="47dp"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:layout_margin="10dp"
+            android:textColor="@color/colorFontWhite"
+            android:background="@drawable/shape_shadow_button"
             android:text="@string/details_bill_delete"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
