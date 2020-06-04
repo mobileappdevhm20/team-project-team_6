@@ -11,7 +11,7 @@ import com.easybill.R
 import com.easybill.databinding.DetailedBillBinding
 
 /**
- * A simple [Fragment] subclass.
+ * Shows a bill with all its information.
  */
 class DetailedBillFragment : Fragment() {
 

@@ -11,7 +11,7 @@ import com.easybill.R
 import com.easybill.databinding.ScanBinding
 
 /**
- * A simple [Fragment] subclass.
+ * Let's the user scan/make a photo of a new bill.
  */
 class ScanFragment : Fragment() {
 

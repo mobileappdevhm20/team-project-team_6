@@ -11,7 +11,7 @@ import com.easybill.R
 import com.easybill.databinding.FilterBinding
 
 /**
- * A simple [Fragment] subclass.
+ * Lets the user set filters to find a subset of bills.
  */
 class FilterFragment : Fragment() {
 

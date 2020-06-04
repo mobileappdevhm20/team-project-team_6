@@ -11,8 +11,7 @@ class ArchiveListAdapter(
     private val company: Array<String>,
     private val date: Array<String>,
     private val price: Array<String>
-) :
-    ArrayAdapter<String>(context, R.layout.archiv_listview_item, company) {
+) : ArrayAdapter<String>(context, R.layout.archiv_listview_item, company) {
 
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
         val inflater = context.layoutInflater

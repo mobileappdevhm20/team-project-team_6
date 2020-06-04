@@ -10,7 +10,7 @@ import com.easybill.R
 import com.easybill.databinding.StatisticBinding
 
 /**
- * A simple [Fragment] subclass.
+ * Shows statistics of all bills.
  */
 class StatisticsFragment : Fragment() {
 
