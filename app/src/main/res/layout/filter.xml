@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:background="@color/colorBackground"
         android:layout_height="match_parent">
@@ -12,51 +11,61 @@
             android:id="@+id/filter_title"
             android:layout_width="111dp"
             android:layout_height="45dp"
+            android:layout_marginTop="40dp"
             android:text="@string/filter_title"
             android:textColor="@color/colorFontWhite"
             android:textSize="32sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/textView_filter_price"
+            app:layout_constraintBottom_toTopOf="@+id/seekBar_price"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.054" />
 
         <SeekBar
             android:id="@+id/seekBar_price"
             android:layout_width="263dp"
             android:layout_height="43dp"
-            app:layout_constraintBottom_toTopOf="@+id/seekBar_time_from"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.77"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.635" />
+            app:layout_constraintVertical_bias="0.187" />
 
         <SeekBar
             android:id="@+id/seekBar_time_from"
             android:layout_width="263dp"
             android:layout_height="43dp"
-            app:layout_constraintBottom_toTopOf="@+id/seekBar_year_to"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.77"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.274" />
 
         <SeekBar
             android:id="@+id/seekBar_time_to"
             android:layout_width="263dp"
             android:layout_height="43dp"
-            app:layout_constraintBottom_toTopOf="@+id/seekBar_year_from"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.77"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar_time_from" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.36" />
 
         <SeekBar
             android:id="@+id/seekBar_year_from"
             android:layout_width="263dp"
             android:layout_height="43dp"
-            app:layout_constraintBottom_toTopOf="@+id/checkBox_traffic"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.783"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar_time_from" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.447" />
 
         <SeekBar
             android:id="@+id/seekBar_year_to"
@@ -64,33 +73,33 @@
             android:layout_height="43dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.783"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.629" />
+            app:layout_constraintVertical_bias="0.537" />
 
         <CheckBox
             android:id="@+id/checkBox_food"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/filter_category_food"
-            app:layout_constraintBottom_toTopOf="@+id/checkBox_sport"
-            app:layout_constraintEnd_toStartOf="@+id/checkBox_traffic"
-            app:layout_constraintHorizontal_bias="0.398"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.177"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox_fashion"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_filter_category"
+            app:layout_constraintVertical_bias="0.088" />
 
         <CheckBox
             android:id="@+id/checkBox_sport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:text="@string/filter_category_sport"
-            app:layout_constraintBottom_toTopOf="@+id/checkBox_health"
-            app:layout_constraintEnd_toStartOf="@+id/checkBox_living"
-            app:layout_constraintHorizontal_bias="0.415"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.181"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox_fashion"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox_food"
             app:layout_constraintVertical_bias="0.0" />
 
         <CheckBox
@@ -98,11 +107,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/filter_category_living"
-            app:layout_constraintBottom_toTopOf="@+id/checkBox_other"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.44"
-            app:layout_constraintStart_toEndOf="@+id/checkBox_health"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox_electronics" />
+            app:layout_constraintHorizontal_bias="0.635"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox_electronics"
+            app:layout_constraintVertical_bias="0.0" />
 
         <CheckBox
             android:id="@+id/checkBox_health"
@@ -110,23 +120,23 @@
             android:layout_height="wrap_content"
             android:text="@string/filter_category_health"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/checkBox_other"
-            app:layout_constraintHorizontal_bias="0.442"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.187"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/checkBox_fashion"
-            app:layout_constraintVertical_bias="0.407" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <CheckBox
             android:id="@+id/checkBox_traffic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/filter_category_traffic"
-            app:layout_constraintBottom_toTopOf="@+id/checkBox_electronics"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.557"
-            app:layout_constraintStart_toEndOf="@+id/textView_filter_category"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar_year_to"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintHorizontal_bias="0.657"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_filter_category"
+            app:layout_constraintVertical_bias="0.088" />
 
         <Button
             android:id="@+id/apply_button"
@@ -136,7 +146,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox_other" />
+            app:layout_constraintTop_toBottomOf="@+id/checkBox_health" />
 
         <CheckBox
             android:id="@+id/checkBox_other"
@@ -145,10 +155,10 @@
             android:text="@string/filter_category_other"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.492"
-            app:layout_constraintStart_toEndOf="@+id/checkBox_food"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox_electronics"
-            app:layout_constraintVertical_bias="0.256" />
+            app:layout_constraintHorizontal_bias="0.637"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox_living"
+            app:layout_constraintVertical_bias="0.0" />
 
         <CheckBox
             android:id="@+id/checkBox_fashion"
@@ -156,11 +166,11 @@
             android:layout_height="wrap_content"
             android:text="@string/filter_category_fashion"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/checkBox_traffic"
-            app:layout_constraintHorizontal_bias="0.456"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.19"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar_year_to"
-            app:layout_constraintVertical_bias="0.152" />
+            app:layout_constraintTop_toBottomOf="@+id/checkBox_sport"
+            app:layout_constraintVertical_bias="0.0" />
 
         <CheckBox
             android:id="@+id/checkBox_electronics"
@@ -169,82 +179,83 @@
             android:text="@string/filter_category_electronics"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.634"
-            app:layout_constraintStart_toEndOf="@+id/checkBox_food"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar_year_to"
-            app:layout_constraintVertical_bias="0.295" />
+            app:layout_constraintHorizontal_bias="0.737"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox_traffic"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView_filter_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="45dp"
+            android:layout_height="15dp"
             android:text="@string/filter_price"
-            app:layout_constraintBottom_toTopOf="@+id/seekBar_price"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/seekBar_price"
+            app:layout_constraintHorizontal_bias="0.231"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.202" />
 
         <TextView
             android:id="@+id/textView_filter_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:text="@string/filter_category"
-            app:layout_constraintBottom_toTopOf="@+id/checkBox_fashion"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.132"
+            app:layout_constraintHorizontal_bias="0.047"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/seekBar_year_to"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView_filter_time_from"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/filter_time_from"
-            app:layout_constraintBottom_toTopOf="@+id/seekBar_time_from"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.092"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/seekBar_time_from"
+            app:layout_constraintHorizontal_bias="0.432"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar_price"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.283" />
 
         <TextView
             android:id="@+id/textView_filter_time_to"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/filter_time_to"
-            app:layout_constraintBottom_toTopOf="@+id/seekBar_time_to"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.104"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/seekBar_time_to"
+            app:layout_constraintHorizontal_bias="0.28"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar_time_from"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.363" />
 
         <TextView
             android:id="@+id/textView_filter_year_from"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/filter_year_from"
-            app:layout_constraintBottom_toTopOf="@+id/seekBar_year_from"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.111"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/seekBar_year_from"
+            app:layout_constraintHorizontal_bias="0.432"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar_time_to"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.448" />
 
         <TextView
             android:id="@+id/textView_filter_year_to"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/filter_year_to"
-            app:layout_constraintBottom_toTopOf="@+id/seekBar_year_to"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.105"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/seekBar_year_to"
+            app:layout_constraintHorizontal_bias="0.28"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar_year_from"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.54" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
