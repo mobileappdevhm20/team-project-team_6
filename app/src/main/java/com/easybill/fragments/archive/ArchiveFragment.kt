@@ -1,4 +1,4 @@
-package com.easybill.fragments
+package com.easybill.fragments.archive
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,10 +7,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import com.easybill.ArchiveListAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.easybill.R
-import com.easybill.databinding.ArchivBinding
+import com.easybill.database.EasyBillDatabase
+import com.easybill.databinding.ArchiveBinding
+import com.easybill.viewmodel.EasyBillViewModel
+import com.easybill.viewmodel.EasyBillViewModelFactory
 
 /**
  * Displays the bill-archive. This is the first fragment that is shown to the user
@@ -18,10 +23,34 @@ import com.easybill.databinding.ArchivBinding
  */
 class ArchiveFragment : Fragment() {
 
-    private val testCompany = arrayOf("Oberpollinger", "Saturn", "H&M")
-    private val testDate = arrayOf("27.04.2020", "04.10.2019", "05.08.2019")
-    private val testPrice = arrayOf("295.00", "539.00", "74.98")
-    lateinit var binding: ArchivBinding
+    // data-binding for this activity
+    private lateinit var binding: ArchiveBinding
+
+    // keeps state when the activity gets re-loaded on device configuration change
+    private lateinit var viewModel: EasyBillViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = DataBindingUtil.inflate(
+            layoutInflater, R.layout.archive, null, false)
+
+        // get bill-dao and create view-model
+        val application = activity?.application
+        if (application != null) {
+            val headDao = EasyBillDatabase.getInstance(application).getHeadDao()
+            val itemDao = EasyBillDatabase.getInstance(application).getItemDao()
+            val billDao = EasyBillDatabase.getInstance(application).getBillDao()
+
+            // create view-model
+            val viewModelFactory = EasyBillViewModelFactory(headDao, itemDao, billDao, application)
+            viewModel = ViewModelProvider(activity!!, viewModelFactory)
+                .get(EasyBillViewModel::class.java)
+        }
+
+        // set bindings view-model
+        binding.billViewModel = viewModel
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,27 +58,15 @@ class ArchiveFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = DataBindingUtil.inflate(
-            inflater, R.layout.archiv, container, false)
+        // setup recycler-view
+        // activity?.findViewById<RecyclerView>(R.id.archiveRecyclerView)
+        binding.archiveRecyclerView.layoutManager = LinearLayoutManager(context)
+        viewModel.bills.observe(viewLifecycleOwner, Observer {
+            binding.archiveRecyclerView.adapter =
+                ArchiveAdapter(viewModel)
+        })
 
-        val archiveListAdapter = ArchiveListAdapter(
-            this.requireActivity(),
-            testCompany,
-            testDate,
-            testPrice
-        )
-
-        binding.archivListItems.adapter = archiveListAdapter
-        binding.archivListItems.setOnItemClickListener() { adapterView, view, position, id ->
-            // TODO read bill id and pass it to the detailed bill fragment
-            val billID: Long = adapterView.getItemIdAtPosition(position)
-            view.findNavController()
-                .navigate(
-                    ArchiveFragmentDirections.actionArchiveFragmentToDetailedBillFragment(
-                        billID
-                    )
-                )
-        }
+        viewModel.getAllBills()
 
         /*
          * Navigate to ScanFragment

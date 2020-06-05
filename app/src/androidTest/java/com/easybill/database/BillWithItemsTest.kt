@@ -4,6 +4,10 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.easybill.database.dao.HeadDao
+import com.easybill.database.dao.ItemDao
+import com.easybill.database.model.Item
+import com.easybill.database.model.Head
 import org.hamcrest.CoreMatchers.equalTo
 import org.junit.After
 import org.junit.Assert.assertThat
@@ -15,7 +19,7 @@ import java.io.IOException
 @RunWith(AndroidJUnit4::class)
 class BillWithItemsTest {
     private lateinit var itemDao: ItemDao
-    private lateinit var billDao: BillDao
+    private lateinit var headDao: HeadDao
     private lateinit var db: EasyBillDatabase
 
     @Before
@@ -23,7 +27,7 @@ class BillWithItemsTest {
         val context = ApplicationProvider.getApplicationContext<Context>()
         db = Room.inMemoryDatabaseBuilder(
             context, EasyBillDatabase::class.java).build()
-        billDao = db.getBillDao()
+        headDao = db.getHeadDao()
         itemDao = db.getItemDao()
     }
 
@@ -40,13 +44,13 @@ class BillWithItemsTest {
         val numItems = 10
 
         // create a new bill with test-data
-        val bill = Bill()
+        val bill = Head()
         bill.address = "TestAddress"
         bill.storeName = "StoreName"
         bill.salesTax = 19.0
 
         // insert the bill
-        bill.id = billDao.insert(bill)
+        bill.id = headDao.insert(bill)
 
         // insert numItems items
         for (i in 1..numItems) {
@@ -56,14 +60,14 @@ class BillWithItemsTest {
             item.billId = bill.id
             item.amount = i.toDouble()
             item.name = "TestItem#$i"
-            item.singlePrice = i.toDouble()
+            item.nettoPrice = i.toDouble()
 
             // insert item
             item.id = itemDao.insert(item)
         }
 
         // get bill with items
-        val actual = billDao.getByIdWithItems(bill.id)
+        val actual = headDao.getBillById(bill.id)
 
         // bill should have numItems items
         assertThat(actual.items.size, equalTo(numItems))
@@ -75,13 +79,13 @@ class BillWithItemsTest {
         val numItems = 10
 
         // create a new bill with test-data
-        val bill = Bill()
+        val bill = Head()
         bill.address = "TestAddress"
         bill.storeName = "StoreName"
         bill.salesTax = 19.0
 
         // insert the bill
-        bill.id = billDao.insert(bill)
+        bill.id = headDao.insert(bill)
 
         // insert numItems items
         var lastInsertedItemId = 0L
@@ -92,7 +96,7 @@ class BillWithItemsTest {
             item.billId = bill.id
             item.amount = i.toDouble()
             item.name = "TestItem#$i"
-            item.singlePrice = i.toDouble()
+            item.nettoPrice = i.toDouble()
 
             // insert item
             item.id = itemDao.insert(item)
@@ -100,7 +104,7 @@ class BillWithItemsTest {
         }
 
         // get bill with items
-        var actual = billDao.getByIdWithItems(bill.id)
+        var actual = headDao.getBillById(bill.id)
 
         // bill should have numItems items
         assertThat(actual.items.size, equalTo(numItems))
@@ -110,7 +114,7 @@ class BillWithItemsTest {
         itemDao.delete(item)
 
         // get bill with items, should now have numItems-1 items
-        actual = billDao.getByIdWithItems(bill.id)
+        actual = headDao.getBillById(bill.id)
         assertThat(actual.items.size, equalTo(numItems-1))
     }
 }

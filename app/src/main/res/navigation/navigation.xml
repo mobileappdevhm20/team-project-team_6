@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/archiveFragment"
-        android:name="com.easybill.fragments.ArchiveFragment"
+        android:name="com.easybill.fragments.archive.ArchiveFragment"
         android:label="ArchiveFragment" >
         <action
             android:id="@+id/action_archiveFragment_to_scanFragment"
