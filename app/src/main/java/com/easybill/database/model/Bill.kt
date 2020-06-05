@@ -7,10 +7,10 @@ import androidx.room.Relation
  * A Bill consists of a head and a list of items.
  */
 data class Bill(
-    @Embedded val head: Head,
+    @Embedded val head: Head = Head(),
 
     @Relation(parentColumn = "id", entityColumn = "billId")
-    val items: List<Item>
+    val items: List<Item> = mutableListOf()
 ) {
     override fun toString(): String {
         var total = 0.0
