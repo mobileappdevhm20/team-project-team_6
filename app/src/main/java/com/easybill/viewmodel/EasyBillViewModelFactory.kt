@@ -8,6 +8,7 @@ import com.easybill.database.dao.HeadDao
 import com.easybill.database.dao.ItemDao
 import java.lang.IllegalArgumentException
 
+@Suppress("UNCHECKED_CAST")
 class EasyBillViewModelFactory(
     private val headDao: HeadDao,
     private val itemDao: ItemDao,

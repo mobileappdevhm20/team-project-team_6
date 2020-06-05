@@ -50,7 +50,7 @@ class EasyBillViewModel(
                 item.id = itemDao.insert(item)
             }
 
-            if (!privBills.value!!.any{b -> b.head.id == bill.head.id }){
+            if (!privBills.value!!.any { b -> b.head.id == bill.head.id }) {
                 privBills.value?.add(bill)
             }
         }
