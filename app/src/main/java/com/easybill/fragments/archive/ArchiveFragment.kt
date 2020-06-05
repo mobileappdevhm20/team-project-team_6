@@ -66,6 +66,8 @@ class ArchiveFragment : Fragment() {
                 ArchiveAdapter(viewModel)
         })
 
+        viewModel.getAllBills()
+
         /*
          * Navigate to ScanFragment
          */

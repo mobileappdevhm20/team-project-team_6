@@ -40,10 +40,10 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(EasyBillViewModel::class.java)
 
         // fill database with mock-data
-        // fillDatabase()
+        //fillDatabase()
 
         // clear database-tables
-        clearDatabase()
+        //clearDatabase()
     }
 
     override fun onSupportNavigateUp(): Boolean {
