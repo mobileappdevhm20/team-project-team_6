@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.easybill.database.dao.ItemDao
+import com.easybill.database.model.Item
 import org.hamcrest.CoreMatchers.*
 import org.junit.After
 import org.junit.Assert.assertThat
@@ -41,7 +43,7 @@ class ItemTest {
             val item = Item()
             item.name = "ItemName#$i"
             item.amount = i.toDouble()
-            item.singlePrice = i.toDouble()
+            item.nettoPrice = i.toDouble()
 
             // insert the item and get it
             item.id = itemDao.insert(item)
@@ -50,7 +52,7 @@ class ItemTest {
             // verify results
             assertThat(actual.name, equalTo(item.name))
             assertThat(actual.amount, equalTo(item.amount))
-            assertThat(actual.singlePrice, equalTo(item.singlePrice))
+            assertThat(actual.nettoPrice, equalTo(item.nettoPrice))
         }
 
         // get all items
@@ -65,7 +67,7 @@ class ItemTest {
         val item = Item()
         item.name = "TestName"
         item.amount = 1.0
-        item.singlePrice = 1.0
+        item.nettoPrice = 1.0
 
         // insert the item
         item.id = itemDao.insert(item)
@@ -73,14 +75,14 @@ class ItemTest {
         // now change the item and update it
         item.name = "NewTestName"
         item.amount = 2.0
-        item.singlePrice = 10.0
+        item.nettoPrice = 10.0
         itemDao.update(item)
 
         // get the updated item and verify
         val actual = itemDao.getById(item.id)
         assertThat(actual.name, equalTo(item.name))
         assertThat(actual.amount, equalTo(item.amount))
-        assertThat(actual.singlePrice, equalTo(item.singlePrice))
+        assertThat(actual.nettoPrice, equalTo(item.nettoPrice))
     }
 
     @Test
@@ -90,7 +92,7 @@ class ItemTest {
         val item = Item()
         item.name = "TestName"
         item.amount = 1.0
-        item.singlePrice = 1.0
+        item.nettoPrice = 1.0
 
         // insert the item
         item.id = itemDao.insert(item)

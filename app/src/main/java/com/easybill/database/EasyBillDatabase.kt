@@ -8,8 +8,8 @@ import androidx.room.TypeConverters
 import com.easybill.database.dao.BillDao
 import com.easybill.database.dao.HeadDao
 import com.easybill.database.dao.ItemDao
-import com.easybill.database.model.Item
 import com.easybill.database.model.Head
+import com.easybill.database.model.Item
 
 /**
  * Provides access to the database through a singleton-object.

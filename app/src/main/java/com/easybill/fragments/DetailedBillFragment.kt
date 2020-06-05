@@ -54,7 +54,7 @@ class DetailedBillFragment : Fragment() {
         val billId = DetailedBillFragmentArgs.fromBundle(requireArguments()).billID
 
         // find correct bill
-        var bill : Bill? = null
+        var bill: Bill? = null
         if (viewModel.bills.value != null)
             bill = viewModel.bills.value!!.find { it.head.id == billId }
 

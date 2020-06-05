@@ -12,7 +12,7 @@ data class Bill(
     @Relation(parentColumn = "id", entityColumn = "billId")
     val items: List<Item>
 ) {
-    override fun toString() : String {
+    override fun toString(): String {
         var total = 0.0
         for (item in items) {
             total += item.bruttoPrice()
@@ -21,8 +21,10 @@ data class Bill(
             head.storeName, head.address, head.time, total)
 
         for (item in items) {
-            head += String.format("\n%s\n\tamount: %f\n\ttax: %f\n\tnetto: %f\n\tbrutto=%f\n\ttotal=%f",
-                item.name, item.amount, item.tax, item.nettoPrice, item.bruttoPrice(), item.totalPrice())
+            head +=
+                String.format("\n%s\n\tamount: %f\n\ttax: %f\n\tnetto: %f\n\tbrutto=%f\n\ttotal=%f",
+                item.name, item.amount, item.tax,
+                    item.nettoPrice, item.bruttoPrice(), item.totalPrice())
         }
 
         return head

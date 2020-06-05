@@ -16,7 +16,6 @@ import com.easybill.database.EasyBillDatabase
 import com.easybill.databinding.ArchiveBinding
 import com.easybill.viewmodel.EasyBillViewModel
 import com.easybill.viewmodel.EasyBillViewModelFactory
-import timber.log.Timber
 
 /**
  * Displays the bill-archive. This is the first fragment that is shown to the user
@@ -60,7 +59,7 @@ class ArchiveFragment : Fragment() {
     ): View? {
 
         // setup recycler-view
-        //activity?.findViewById<RecyclerView>(R.id.archiveRecyclerView)
+        // activity?.findViewById<RecyclerView>(R.id.archiveRecyclerView)
         binding.archiveRecyclerView.layoutManager = LinearLayoutManager(context)
         viewModel.bills.observe(viewLifecycleOwner, Observer {
             binding.archiveRecyclerView.adapter =

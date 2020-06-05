@@ -5,13 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.easybill.database.*
+import com.easybill.database.Converters
+import com.easybill.database.EasyBillDatabase
 import com.easybill.database.model.Bill
-import com.easybill.database.model.Item
 import com.easybill.database.model.Head
+import com.easybill.database.model.Item
 import com.easybill.viewmodel.EasyBillViewModel
 import com.easybill.viewmodel.EasyBillViewModelFactory
-import timber.log.Timber
 import java.util.Objects.requireNonNull
 
 /**
@@ -40,10 +40,10 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(EasyBillViewModel::class.java)
 
         // fill database with mock-data
-        fillDatabase()
+        // fillDatabase()
 
         // clear database-tables
-        //clearDatabase()
+        clearDatabase()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -54,11 +54,11 @@ class MainActivity : AppCompatActivity() {
     private fun fillDatabase() {
         val millisPerDay = 24 * 60 * 60 * 1000
         val converter = Converters()
-        //val application = requireNonNull(this).application
-        //val headDao = EasyBillDatabase.getInstance(application).getHeadDao()
-        //val itemDao = EasyBillDatabase.getInstance(application).getItemDao()
-        //val billDao = EasyBillDatabase.getInstance(application).getBillDao()
-        //val viewModel = EasyBillViewModel(headDao, itemDao, billDao, application)
+        // val application = requireNonNull(this).application
+        // val headDao = EasyBillDatabase.getInstance(application).getHeadDao()
+        // val itemDao = EasyBillDatabase.getInstance(application).getItemDao()
+        // val billDao = EasyBillDatabase.getInstance(application).getBillDao()
+        // val viewModel = EasyBillViewModel(headDao, itemDao, billDao, application)
 
         /*
          * Bill#1
@@ -85,7 +85,6 @@ class MainActivity : AppCompatActivity() {
             listOf(itemOneOne, itemOneTwo)
         )
         viewModel.addBill(billOne)
-
 
         /*
          * Bill#2

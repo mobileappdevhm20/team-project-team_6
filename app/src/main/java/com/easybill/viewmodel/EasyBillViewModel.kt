@@ -6,9 +6,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.easybill.database.dao.BillDao
 import com.easybill.database.dao.HeadDao
-import com.easybill.database.model.Bill
 import com.easybill.database.dao.ItemDao
-import kotlinx.coroutines.*
+import com.easybill.database.model.Bill
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class EasyBillViewModel(
     private val headDao: HeadDao,
@@ -18,8 +22,8 @@ class EasyBillViewModel(
 ) : AndroidViewModel(application) {
 
     // scope & job for coroutines
-    private var job : Job = Job()
-    private var uiScope : CoroutineScope = CoroutineScope(Dispatchers.Main + job)
+    private var job: Job = Job()
+    private var uiScope: CoroutineScope = CoroutineScope(Dispatchers.Main + job)
 
     // keeps/caches all bills
     private var privBills = MutableLiveData<MutableList<Bill>>()

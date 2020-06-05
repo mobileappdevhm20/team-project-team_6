@@ -9,7 +9,6 @@ import com.easybill.R
 import com.easybill.database.model.Bill
 import com.easybill.viewmodel.EasyBillViewModel
 import kotlinx.android.synthetic.main.archive_listview_item.view.*
-import timber.log.Timber
 
 class ArchiveAdapter(private var viewModel: EasyBillViewModel) :
     RecyclerView.Adapter<ArchiveAdapter.BillsWithItemsViewHolder>() {
@@ -34,19 +33,20 @@ class ArchiveAdapter(private var viewModel: EasyBillViewModel) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BillsWithItemsViewHolder {
         val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.archive_listview_item, parent, false)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.archive_listview_item, parent, false)
 
         return BillsWithItemsViewHolder(itemView)
     }
 
     override fun getItemCount(): Int {
-        //Timber.i("item count is %d (%s)", viewModel.bills.value?.size?: 0, viewModel.bills.value)
-        return viewModel.bills.value?.size?: 0
+        // Timber.i("item count is %d (%s)", viewModel.bills.value?.size?: 0, viewModel.bills.value)
+        return viewModel.bills.value?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: BillsWithItemsViewHolder, position: Int) {
         val tmp = viewModel.bills.value?.get(position)
-        //Timber.i("tmp is %s", tmp)
+        // Timber.i("tmp is %s", tmp)
         if (tmp != null)
             holder.bind(tmp)
     }

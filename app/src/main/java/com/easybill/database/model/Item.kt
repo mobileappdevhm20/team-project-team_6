@@ -41,10 +41,10 @@ class Item(
     /**
      * Calculates the brutto-price of the item, e.g. nettoPrice * (1 + tax)
      */
-    fun bruttoPrice() : Double = nettoPrice * (1 + tax)
+    fun bruttoPrice(): Double = nettoPrice * (1 + tax)
 
     /**
      * Calculates the total price of the item, e.g. amount * unit.
      */
-    fun totalPrice() : Double = bruttoPrice() * amount
+    fun totalPrice(): Double = bruttoPrice() * amount
 }
