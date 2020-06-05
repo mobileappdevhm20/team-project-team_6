@@ -66,3 +66,27 @@ __[Click me for the demo!](https://www.figma.com/file/U0r2xmu9Fyja9gI72Z8CTx/Eas
 [p25]: https://github.com/mobileappdevhm20/team-project-team_6/issues/25
 [p19]: https://github.com/mobileappdevhm20/team-project-team_6/issues/19
 [p31]: https://github.com/mobileappdevhm20/team-project-team_6/issues/31
+
+### Conclusion
+
+1. Started with a sprint backlog of 11 Tasks
+2. Different components contributed by different team-members
+	2.1. Significant overhead in merging/keeping everything in sync
+3. Implementation has two Entities, three DAOs, a converter-class
+   and a Database-Singleton
+4. Implementation constists of five fragments, one of them, the archive,
+   uses a RecyclerView with an Adapter that's bound to the applications
+   ViewModel
+5. The applications ViewModel offers asynchronous (e.g. non-blocking) 
+   access to the database and is available through a factory
+6. There are Unit-tests for the database module
+7. The development pipeline is done with travis-ci and integrated into
+   github, enforces sane coding-standards and code-quality through 
+   linter-plugin
+8. Work was done in git-flwo, before merging features/improvements back
+   in a review was needed
+7. All 11 tasks have been finished
+	---> Result: a navigable app that has a database filled with some
+	     mock data
+	     
+Up next: Cleanup, polishing of UI, OCR, statistics, filter..
