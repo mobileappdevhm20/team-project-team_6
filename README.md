@@ -58,10 +58,11 @@ __[Click me for the demo!](https://www.figma.com/file/U0r2xmu9Fyja9gI72Z8CTx/Eas
 * feature/design -> develop ([#22][p22]) 
 * database refactoring -> develop ([#25][p25]) 
 * feature/navigation -> develop ([#26][p26]) 
+* experimental/viewmodel -> develop ([#31][p31])
 
 [p18]: https://github.com/mobileappdevhm20/team-project-team_6/issues/18
 [p22]: https://github.com/mobileappdevhm20/team-project-team_6/issues/22
 [p26]: https://github.com/mobileappdevhm20/team-project-team_6/issues/26
 [p25]: https://github.com/mobileappdevhm20/team-project-team_6/issues/25
 [p19]: https://github.com/mobileappdevhm20/team-project-team_6/issues/19
-
+[p31]: https://github.com/mobileappdevhm20/team-project-team_6/issues/31
