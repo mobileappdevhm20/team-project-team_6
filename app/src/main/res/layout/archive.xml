@@ -17,8 +17,8 @@
 
         <TextView
             android:id="@+id/filter_title"
-            android:layout_width="140dp"
-            android:layout_height="43dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/archive_title"
             android:textColor="@color/colorFontWhite"
             android:textSize="32sp"
