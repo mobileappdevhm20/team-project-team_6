@@ -1,14 +1,14 @@
-package com.easybill.database
+package com.easybill.database.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.time.LocalDateTime
 
 /**
- * A Bill contains the meta-data of a bill.
+ * A head contains the top-section of a bill, e.g. the bills meta-data.
  */
-@Entity(tableName = "bill")
-data class Bill(
+@Entity(tableName = "head")
+data class Head(
 
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0L,
@@ -22,11 +22,6 @@ data class Bill(
      * The name of the store where the bill was obtained.
      */
     var storeName: String = "",
-
-    /**
-     * The sales tax on the purchased items.
-     */
-    var salesTax: Double = 0.0,
 
     /**
      * The time that the bill was printed.

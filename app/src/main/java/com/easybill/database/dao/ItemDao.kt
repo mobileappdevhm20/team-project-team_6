@@ -1,13 +1,14 @@
-package com.easybill.database
+package com.easybill.database.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import com.easybill.database.model.Item
 
 /**
- * Provides CRUD-Operations to the Item-Entity.
+ * Provides CRUD-Operations to the BillItem-Entity.
  */
 @Dao
 interface ItemDao {

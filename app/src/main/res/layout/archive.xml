@@ -1,31 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <data>
+        <variable
+            name="billViewModel"
+            type="com.easybill.viewmodel.EasyBillViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBackground">
 
-        <TextView
-            android:id="@+id/archiv_title"
-            android:layout_width="123dp"
-            android:layout_height="45dp"
-            android:text="@string/archiv_title"
-            android:textColor="@color/colorFontWhite"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/archiv_listItems"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ListView
-            android:id="@+id/archiv_listItems"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/archiveRecyclerView"
             android:layout_width="409dp"
-            android:layout_height="450dp"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

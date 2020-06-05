@@ -5,12 +5,17 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.easybill.database.dao.BillDao
+import com.easybill.database.dao.HeadDao
+import com.easybill.database.dao.ItemDao
+import com.easybill.database.model.Item
+import com.easybill.database.model.Head
 
 /**
- * Provides access to the database through a singleton.
+ * Provides access to the database through a singleton-object.
  */
 @Database(
-    entities = [Bill::class, Item::class],
+    entities = [Head::class, Item::class],
     version = 1,
     exportSchema = false
 )
@@ -18,15 +23,23 @@ import androidx.room.TypeConverters
 abstract class EasyBillDatabase : RoomDatabase() {
 
     /**
-     * Getter for the BillDao.
+     * Getter for the HeadDao.
      */
-    abstract fun getBillDao(): BillDao
+    abstract fun getHeadDao(): HeadDao
 
     /**
      * Getter for the ItemDao.
      */
     abstract fun getItemDao(): ItemDao
 
+    /**
+     * Getter for the BillDao.
+     */
+    abstract fun getBillDao(): BillDao
+
+    /**
+     * Keeps the singleton.
+     */
     companion object {
 
         @Volatile
@@ -35,21 +48,21 @@ abstract class EasyBillDatabase : RoomDatabase() {
         /**
          * Provides thread-safe access to the EasyBillDatabase singleton-object.
          */
-        fun getInstance(context: Context): EasyBillDatabase? {
+        fun getInstance(context: Context): EasyBillDatabase {
             val tmp = instance
             if (tmp != null)
                 return tmp
 
             return synchronized(this) {
                 if (instance != null) {
-                    instance
+                    instance!!
                 } else {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         EasyBillDatabase::class.java,
                         "easyBillDatabase"
                     ).build()
-                    instance
+                    instance!!
                 }
             }
         }
