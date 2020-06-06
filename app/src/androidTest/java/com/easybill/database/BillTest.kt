@@ -118,4 +118,60 @@ class BillTest {
         actual = billDao.getBillById(head.id)
         assertThat(actual.items.size, equalTo(numItems-1))
     }
+
+    @Test
+    @Throws(Exception::class)
+    fun insertBillsandOrderBYSum() {
+        val numItems = 10
+
+        // create a new head with test-data
+        val head = Head()
+        head.address = "TestAddress"
+        head.storeName = "TestStoreName"
+
+        // insert the head
+        head.id = headDao.insert(head)
+
+        // insert numItems items
+        for (i in 1..numItems) {
+
+            // new item with id of previously inserted head
+            val item = Item()
+            item.billId = head.id
+            item.amount = i.toDouble()
+            item.name = "TestItem#$i"
+            item.nettoPrice = i.toDouble()
+
+            // insert item
+            item.id = itemDao.insert(item)
+        }
+
+        // create a new head with test-data
+        val head2 = Head()
+        head2.address = "TestAddress"
+        head2.storeName = "TestStoreName2"
+
+        // insert the head
+        head2.id = headDao.insert(head)
+
+        // insert numItems items
+        for (i in 1..numItems) {
+
+            // new item with id of previously inserted head
+            val item = Item()
+            item.billId = head2.id
+            item.amount = i.toDouble()*2
+            item.name = "TestItem#$i"
+            item.nettoPrice = i.toDouble()
+
+            // insert item
+            item.id = itemDao.insert(item)
+        }
+
+        // get bill with items
+        val actual = billDao.getAllBillsSumOrderd(false)
+
+        // bill should have numItems items
+        assertThat(actual[0].head.id, equalTo(head2.id))
+    }
 }
