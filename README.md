@@ -89,4 +89,4 @@ __[Click me for the demo!](https://www.figma.com/file/U0r2xmu9Fyja9gI72Z8CTx/Eas
 	---> Result: a navigable app that has a database filled with some
 	     mock data
 	     
-Up next: Cleanup, polishing of UI, OCR, statistics, filter..
+Up next for Sprint 2: Cleanup, polishing of UI, OCR, statistics, filter..
