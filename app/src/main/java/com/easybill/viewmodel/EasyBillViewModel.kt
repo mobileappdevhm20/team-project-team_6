@@ -76,13 +76,13 @@ class EasyBillViewModel(
      * Delete a Bill by Id.
      */
     fun deleteBillById(id: Long) = uiScope.launch {
-            suspendDeleteBillById(id)
-        }
+        suspendDeleteBillById(id)
+    }
 
     private suspend fun suspendDeleteBillById(id: Long) = withContext(Dispatchers.IO) {
-            headDao.deleteById(id)
-            privBills.value?.removeIf { it.head.id == id }
-        }
+        headDao.deleteById(id)
+        privBills.value?.removeIf { it.head.id == id }
+    }
 
     /**
      * Delete all Bills (head & items).
@@ -94,5 +94,40 @@ class EasyBillViewModel(
     private suspend fun suspendedDeleteAllBills() = withContext(Dispatchers.IO) {
         billDao.deleteAllBills()
         privBills.value?.clear()
+    }
+
+    fun sortBillsbyDate(boolean: Boolean) = uiScope.launch {
+        suspendedSortedBillsByDate(boolean)
+    }
+
+    private suspend fun suspendedSortedBillsByDate(boolean: Boolean) = withContext(Dispatchers.IO) {
+        val allBills = billDao.getAllBillsTimeOrderd(boolean)
+
+        privBills.value?.clear();
+
+        for (bill in allBills) {
+            if (!privBills.value!!.any { b -> b.head.id == bill.head.id }) {
+                privBills.value!!.add(bill)
+            }
+        }
+    }
+
+
+    fun sortBillsbySum() = uiScope.launch {
+        suspendedSortedBillsBySum()
+    }
+
+
+    private suspend fun suspendedSortedBillsBySum() = withContext(Dispatchers.IO) {
+        val allBills = billDao.getAllBills()
+
+
+        privBills.value?.clear();
+
+        for (bill in allBills) {
+            if (!privBills.value!!.any { b -> b.head.id == bill.head.id }) {
+                privBills.value!!.add(bill)
+            }
+        }
     }
 }

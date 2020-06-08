@@ -29,6 +29,11 @@ class ArchiveFragment : Fragment() {
     // keeps state when the activity gets re-loaded on device configuration change
     private lateinit var viewModel: EasyBillViewModel
 
+    //keeps info on how the bills should be sorted
+    private var timeOrderASC : Boolean = false;
+    private var sumOrderASC : Boolean = false;
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -94,7 +99,8 @@ class ArchiveFragment : Fragment() {
          * Sort by date
          */
         binding.buttonSortByDate.setOnClickListener {
-            // TODO: get bills from database sorted by date
+            timeOrderASC = !timeOrderASC
+            viewModel.sortBillsbyDate(timeOrderASC)
             closeButtonMenu()
             Toast.makeText(this.activity, "Sorted by date", Toast.LENGTH_LONG).show()
         }
@@ -103,7 +109,8 @@ class ArchiveFragment : Fragment() {
          * Sort by price
          */
         binding.buttonSortByPrice.setOnClickListener {
-            // TODO: get bills from database sorted by price
+            sumOrderASC = !sumOrderASC
+            viewModel.sortBillsbySum()
             closeButtonMenu()
             Toast.makeText(this.activity, "Sorted by price", Toast.LENGTH_LONG).show()
         }

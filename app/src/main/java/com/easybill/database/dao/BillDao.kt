@@ -22,7 +22,6 @@ interface BillDao {
     @Query("SELECT * FROM head ORDER BY CASE WHEN :isAsc = 1 THEN time END ASC, CASE WHEN :isAsc = 0 THEN time  END DESC")
     fun getAllBillsTimeOrderd(isAsc:Boolean): MutableList<Bill>
 
-    @Transaction
-    @Query("SELECT SUM(nettoPrice) FROM head,item WHERE head.id = item.billId ORDER BY CASE WHEN :isAsc = 1 THEN nettoPrice END ASC, CASE WHEN :isAsc = 0 THEN nettoPrice  END DESC")
-    fun getAllBillsSumOrderd(isAsc:Boolean): MutableList<Bill>
+
+
 }
