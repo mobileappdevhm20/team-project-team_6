@@ -1,5 +1,5 @@
 # 	:receipt: :euro:	 __EasyBill__ 	 :euro:	 :receipt:
-[![codecov](https://codecov.io/gh/mobileappdevhm20/team-project-team_6/branch/master/graph/badge.svg)](https://codecov.io/gh/mobileappdevhm20/team-project-team_6)
+[![codecov](https://codecov.io/gh/mobileappdevhm20/team-project-team_6/branch/develop/graph/badge.svg)](https://codecov.io/gh/mobileappdevhm20/team-project-team_6)
 [![License](https://img.shields.io/github/license/mobileappdevhm20/team-project-team_6)](/LICENSE)
 
 ## EasyBill is the free and open-source app for managing all your bills.
