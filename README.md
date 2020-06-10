@@ -1,5 +1,4 @@
 # 	:receipt: :euro:	 __EasyBill__ 	 :euro:	 :receipt:
-![Build Passing Badge](https://api.travis-ci.com/mobileappdevhm20/team-project-team_6.svg?branch=master)
 [![codecov](https://codecov.io/gh/mobileappdevhm20/team-project-team_6/branch/master/graph/badge.svg)](https://codecov.io/gh/mobileappdevhm20/team-project-team_6)
 [![License](https://img.shields.io/github/license/mobileappdevhm20/team-project-team_6)](/LICENSE)
 
