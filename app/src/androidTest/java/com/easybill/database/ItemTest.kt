@@ -6,7 +6,9 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.easybill.database.dao.ItemDao
 import com.easybill.database.model.Item
-import org.hamcrest.CoreMatchers.*
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.CoreMatchers.nullValue
 import org.junit.After
 import org.junit.Assert.assertThat
 import org.junit.Before
@@ -23,7 +25,8 @@ class ItemTest {
     fun createDb() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         db = Room.inMemoryDatabaseBuilder(
-            context, EasyBillDatabase::class.java).build()
+            context, EasyBillDatabase::class.java
+        ).build()
         itemDao = db.getItemDao()
     }
 

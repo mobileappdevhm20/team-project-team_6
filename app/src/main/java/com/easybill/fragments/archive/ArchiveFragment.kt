@@ -33,7 +33,8 @@ class ArchiveFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.inflate(
-            layoutInflater, R.layout.archive, null, false)
+            layoutInflater, R.layout.archive, null, false
+        )
 
         // get bill-dao and create view-model
         val application = activity?.application
@@ -61,10 +62,13 @@ class ArchiveFragment : Fragment() {
         // setup recycler-view
         // activity?.findViewById<RecyclerView>(R.id.archiveRecyclerView)
         binding.archiveRecyclerView.layoutManager = LinearLayoutManager(context)
-        viewModel.bills.observe(viewLifecycleOwner, Observer {
-            binding.archiveRecyclerView.adapter =
-                ArchiveAdapter(viewModel)
-        })
+        viewModel.bills.observe(
+            viewLifecycleOwner,
+            Observer {
+                binding.archiveRecyclerView.adapter =
+                    ArchiveAdapter(viewModel)
+            }
+        )
 
         viewModel.getAllBills()
 
