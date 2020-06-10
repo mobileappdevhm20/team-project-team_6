@@ -76,13 +76,13 @@ class EasyBillViewModel(
      * Delete a Bill by Id.
      */
     fun deleteBillById(id: Long) = uiScope.launch {
-            suspendDeleteBillById(id)
-        }
+        suspendDeleteBillById(id)
+    }
 
     private suspend fun suspendDeleteBillById(id: Long) = withContext(Dispatchers.IO) {
-            headDao.deleteById(id)
-            privBills.value?.removeIf { it.head.id == id }
-        }
+        headDao.deleteById(id)
+        privBills.value?.removeIf { it.head.id == id }
+    }
 
     /**
      * Delete all Bills (head & items).

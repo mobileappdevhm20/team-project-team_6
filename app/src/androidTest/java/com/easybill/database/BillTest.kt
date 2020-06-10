@@ -7,8 +7,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.easybill.database.dao.BillDao
 import com.easybill.database.dao.HeadDao
 import com.easybill.database.dao.ItemDao
-import com.easybill.database.model.Item
 import com.easybill.database.model.Head
+import com.easybill.database.model.Item
 import org.hamcrest.CoreMatchers.equalTo
 import org.junit.After
 import org.junit.Assert.assertThat
@@ -28,7 +28,8 @@ class BillTest {
     fun createDb() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         db = Room.inMemoryDatabaseBuilder(
-            context, EasyBillDatabase::class.java).build()
+            context, EasyBillDatabase::class.java
+        ).build()
         headDao = db.getHeadDao()
         itemDao = db.getItemDao()
         billDao = db.getBillDao()
@@ -39,7 +40,6 @@ class BillTest {
     fun closeDb() {
         db.close()
     }
-
 
     @Test
     @Throws(Exception::class)
@@ -116,6 +116,6 @@ class BillTest {
 
         // get bill with items, should now have numItems-1 items
         actual = billDao.getBillById(head.id)
-        assertThat(actual.items.size, equalTo(numItems-1))
+        assertThat(actual.items.size, equalTo(numItems - 1))
     }
 }

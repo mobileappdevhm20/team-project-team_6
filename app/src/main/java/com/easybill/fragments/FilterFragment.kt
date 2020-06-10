@@ -22,7 +22,8 @@ class FilterFragment : Fragment() {
     ): View? {
 
         val binding: FilterBinding = DataBindingUtil.inflate(
-            inflater, R.layout.filter, container, false)
+            inflater, R.layout.filter, container, false
+        )
 
         binding.applyButton.setOnClickListener {
             // TODO check if everything is right

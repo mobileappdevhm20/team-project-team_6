@@ -25,8 +25,10 @@ class ArchiveAdapter(private var viewModel: EasyBillViewModel) :
             itemView.list_view_price.text = "$total €"
 
             itemView.setOnClickListener {
-                it.findNavController().navigate(ArchiveFragmentDirections
-                    .actionArchiveFragmentToDetailedBillFragment(bill.head.id))
+                it.findNavController().navigate(
+                    ArchiveFragmentDirections
+                        .actionArchiveFragmentToDetailedBillFragment(bill.head.id)
+                )
             }
         }
     }
