@@ -113,14 +113,13 @@ class EasyBillViewModel(
     }
 
 
-    fun sortBillsbySum() = uiScope.launch {
-        suspendedSortedBillsBySum()
+    fun sortBillsbySum(boolean: Boolean) = uiScope.launch {
+        suspendedSortedBillsBySum(boolean)
     }
 
 
-    private suspend fun suspendedSortedBillsBySum() = withContext(Dispatchers.IO) {
-        val allBills = billDao.getAllBills()
-
+    private suspend fun suspendedSortedBillsBySum(boolean: Boolean) = withContext(Dispatchers.IO) {
+        val allBills = billDao.getAllBillsSumOrderd(boolean)
 
         privBills.value?.clear();
 

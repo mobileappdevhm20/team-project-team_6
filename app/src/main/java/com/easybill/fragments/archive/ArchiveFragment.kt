@@ -110,7 +110,7 @@ class ArchiveFragment : Fragment() {
          */
         binding.buttonSortByPrice.setOnClickListener {
             sumOrderASC = !sumOrderASC
-            viewModel.sortBillsbySum()
+            viewModel.sortBillsbySum(sumOrderASC)
             closeButtonMenu()
             Toast.makeText(this.activity, "Sorted by price", Toast.LENGTH_LONG).show()
         }
