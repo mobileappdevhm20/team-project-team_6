@@ -23,4 +23,5 @@
     <string name="filter_category_living">LIVING</string>
     <string name="filter_category_other">OTHER</string>
     <string name="bill_price">%1$d €</string>
+    <string name="filterFragmentSubtitle">Filter your bills</string>
 </resources>

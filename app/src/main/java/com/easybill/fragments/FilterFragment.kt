@@ -1,5 +1,6 @@
 package com.easybill.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import com.easybill.MainActivity
 import com.easybill.R
 import com.easybill.databinding.FilterBinding
 
@@ -14,6 +16,12 @@ import com.easybill.databinding.FilterBinding
  * Lets the user set filters to find a subset of bills.
  */
 class FilterFragment : Fragment() {
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        (activity as MainActivity).setActionBarSubtitle(getString(R.string.filterFragmentSubtitle))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
