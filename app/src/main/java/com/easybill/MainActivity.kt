@@ -46,9 +46,21 @@ class MainActivity : AppCompatActivity() {
         // clearDatabase()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        // set action-bar subtitle
+        setActionBarSubtitle("Your saved bills")
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.myNavHostFragment)
         return navController.navigateUp()
+    }
+
+    fun setActionBarSubtitle(title: String) {
+        // set action-bar subtitle
+        supportActionBar?.subtitle = title
     }
 
     private fun fillDatabase() {
