@@ -63,7 +63,7 @@ class DetailedBillFragment : Fragment() {
             /*
              * Delete bill
              */
-            binding.datailedBillDeleteButton.setOnClickListener {
+            binding.detailedBillDeleteButton.setOnClickListener {
                 viewModel.deleteBillById(billId)
                 it.findNavController().navigate(R.id.action_detailedBillFragment_to_archiveFragment)
             }
