@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.easybill.database.Converters
 import com.easybill.database.EasyBillDatabase
@@ -27,15 +28,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // setup navigation
-        val navController = this.findNavController(R.id.myNavHostFragment)
-        NavigationUI.setupActionBarWithNavController(this, navController)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
+        NavigationUI.setupActionBarWithNavController(this, navHostFragment.navController)
 
         // get bill-dao and create view-model
         val headDao = EasyBillDatabase.getInstance(application).getHeadDao()
         val itemDao = EasyBillDatabase.getInstance(application).getItemDao()
         val billDao = EasyBillDatabase.getInstance(application).getBillDao()
-
-        // create view-model
         val viewModelFactory = EasyBillViewModelFactory(headDao, itemDao, billDao, application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(EasyBillViewModel::class.java)
 
@@ -54,11 +54,6 @@ class MainActivity : AppCompatActivity() {
     private fun fillDatabase() {
         val millisPerDay = 24 * 60 * 60 * 1000
         val converter = Converters()
-        // val application = requireNonNull(this).application
-        // val headDao = EasyBillDatabase.getInstance(application).getHeadDao()
-        // val itemDao = EasyBillDatabase.getInstance(application).getItemDao()
-        // val billDao = EasyBillDatabase.getInstance(application).getBillDao()
-        // val viewModel = EasyBillViewModel(headDao, itemDao, billDao, application)
 
         /*
          * Bill#1
