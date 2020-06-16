@@ -38,7 +38,7 @@ class ScanFragment : Fragment() {
 
             // create view-model
             val viewModelFactory = EasyBillViewModelFactory(headDao, itemDao, billDao, application)
-            viewModel = ViewModelProvider(activity!!, viewModelFactory)
+            viewModel = ViewModelProvider(requireActivity(), viewModelFactory)
                 .get(EasyBillViewModel::class.java)
         }
     }

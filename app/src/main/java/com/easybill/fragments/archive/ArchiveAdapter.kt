@@ -9,14 +9,17 @@ import com.easybill.R
 import com.easybill.database.model.Bill
 import com.easybill.viewmodel.EasyBillViewModel
 import kotlinx.android.synthetic.main.archive_listview_item.view.*
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class ArchiveAdapter(private var viewModel: EasyBillViewModel) :
     RecyclerView.Adapter<ArchiveAdapter.BillsWithItemsViewHolder>() {
 
     inner class BillsWithItemsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(bill: Bill) {
-            itemView.list_view_company_name.text = bill.head.storeName
-            itemView.list_view_date.text = bill.head.time.toString()
+            itemView.list_view_date.text = bill.head.time.format(DateTimeFormatter.ISO_DATE)
+            itemView.list_view_company_name.text = bill.head.storeName.toUpperCase(Locale.getDefault())
+            itemView.list_view_address.text = bill.head.address
 
             var total = 0.0
             for (item in bill.items) {

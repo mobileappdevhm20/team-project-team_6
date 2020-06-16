@@ -6,7 +6,7 @@
     <fragment
         android:id="@+id/archiveFragment"
         android:name="com.easybill.fragments.archive.ArchiveFragment"
-        android:label="ArchiveFragment" >
+        android:label="EasyBill - Your saved bills" >
         <action
             android:id="@+id/action_archiveFragment_to_scanFragment"
             app:destination="@id/scanFragment" />
