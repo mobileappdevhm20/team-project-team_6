@@ -31,7 +31,7 @@ class Converters {
     @TypeConverter
     fun localDateTimeToTimestamp(value: LocalDateTime?): Long? {
         return value?.let {
-            value.atZone(ZoneId.systemDefault()).toEpochSecond()
+            value.atZone(ZoneId.systemDefault()).toInstant().epochSecond
         }
     }
 }

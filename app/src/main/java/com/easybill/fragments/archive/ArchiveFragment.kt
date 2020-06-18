@@ -101,6 +101,7 @@ class ArchiveFragment : Fragment() {
         binding.buttonSortByDate.setOnClickListener {
             timeOrderASC = !timeOrderASC
             viewModel.sortBillsbyDate(timeOrderASC)
+            binding.archiveRecyclerView.adapter?.notifyDataSetChanged()
             closeButtonMenu()
             Toast.makeText(this.activity, "Sorted by date", Toast.LENGTH_LONG).show()
         }
@@ -111,6 +112,7 @@ class ArchiveFragment : Fragment() {
         binding.buttonSortByPrice.setOnClickListener {
             sumOrderASC = !sumOrderASC
             viewModel.sortBillsbySum(sumOrderASC)
+            binding.archiveRecyclerView.adapter?.notifyDataSetChanged()
             closeButtonMenu()
             Toast.makeText(this.activity, "Sorted by price", Toast.LENGTH_LONG).show()
         }

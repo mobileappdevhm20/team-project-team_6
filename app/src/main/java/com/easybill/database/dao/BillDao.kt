@@ -26,14 +26,13 @@ interface BillDao {
     @Query("SELECT * FROM head,item GROUP BY head.id ORDER BY CASE WHEN :isAsc = 1 THEN SUM(nettoPrice*amount*tax) END ASC, CASE WHEN :isAsc = 0 THEN SUM(nettoPrice*amount*tax)  END DESC")
     fun getAllBillsSumOrderd(isAsc:Boolean): MutableList<Bill>
 
-
     @Transaction
     @Query("SELECT * FROM head,item GROUP BY head.id HAVING SUM(nettoPrice*amount*tax) < :sum")
-    fun getBillsFilteredBySumMaxLimit(sum:Double, isMax:Boolean): MutableList<Bill>
+    fun getBillsFilteredBySumMaxLimit(sum:Double): MutableList<Bill>
 
     @Transaction
     @Query("SELECT * FROM head,item GROUP BY head.id HAVING SUM(nettoPrice*amount*tax) > :sum")
-    fun getBillsFilteredBySumMinLimit(sum:Double, isMax:Boolean): MutableList<Bill>
+    fun getBillsFilteredBySumMinLimit(sum:Double): MutableList<Bill>
 
     @Transaction
     @Query("SELECT * FROM head,item GROUP BY head.id HAVING SUM(nettoPrice*amount*tax) > :sumMin AND  SUM(nettoPrice*amount*tax) < :sumMax")
