@@ -44,4 +44,7 @@
         <item>November</item>
         <item>December</item>
     </string-array>
+
+    <string name="month">Month:</string>
+    <string name="year">Year:</string>
 </resources>
