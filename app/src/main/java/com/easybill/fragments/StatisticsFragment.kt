@@ -26,11 +26,11 @@ class StatisticsFragment : Fragment() {
         )
 
         val adapter =
-            this.context?.let { ArrayAdapter(it,android.R.layout.simple_spinner_item, resources.getStringArray(R.array.year_array)) }
+            this.context?.let { ArrayAdapter(it, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.year_array)) }
         binding.yearSpinner.adapter = adapter
 
         val adapter2 =
-            this.context?.let { ArrayAdapter(it,android.R.layout.simple_spinner_item, resources.getStringArray(R.array.year_month)) }
+            this.context?.let { ArrayAdapter(it, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.year_month)) }
         binding.yearMonth.adapter = adapter2
 
         return binding.root
