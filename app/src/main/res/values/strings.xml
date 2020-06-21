@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">EasyBill</string>
+    <string name="title_statistics">Statistics</string>
+    <string name="title_archive">Your saved bills</string>
+    <string name="title_add">Add new bill</string>
+    <string name="title_filter">Filter bills</string>
+    <string name="title_sort_by_price">Sort by price</string>
+    <string name="titles_sort_by_date">Sort by date</string>
+    <string name="bottom_menu_title_bills">Bills</string>
+    <string name="bottom_menu_title_statistics">Statistics</string>
+    <string name="bottom_menu_title_add">Add</string>
+    <string name="filter_dialog_title">Filter bills</string>
+    <string name="dialog_filter_by_price">By price</string>
+    <string name="dialog_filter_by_time">By time</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragmentBillDetailsTotal">Total</string>
+    <string name="bill_archive_empty">Click \'Add\' to add a new bill.</string>
+    <string name="statistics_scroll_chart_text"><![CDATA[Zoom & Scroll the chart to select time-range.]]></string>
+    <string name="total_bills_text">Total Bills</string>
+    <string name="total_bills_price_text">Total Price</string>
+    <string name="least_expensive_bill">Lowest</string>
+    <string name="average_bill">Average</string>
+    <string name="most_expensive_bill">Highest</string>
+    <string name="statistics_time_from">From</string>
+    <string name="statistics_time_to">To</string>
+    <string name="title_timeline">Show timeline</string>
+</resources>
