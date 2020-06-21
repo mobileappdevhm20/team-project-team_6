@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
 import com.easybill.database.model.Bill
+import java.time.LocalDateTime
 
 @Dao
 interface BillDao {
@@ -37,5 +38,17 @@ interface BillDao {
     @Transaction
     @Query("SELECT * FROM head,item GROUP BY head.id HAVING SUM(nettoPrice*amount*(tax+1)) >= :sumMin AND  SUM(nettoPrice*amount*(tax+1)) <= :sumMax")
     fun getBillsFilteredBySumBetween(sumMin:Double, sumMax:Double): MutableList<Bill>
+
+    @Transaction
+    @Query("SELECT * FROM head,item WHERE time <= :date")
+    fun getBillsFilteredByDateMaxLimit(date:LocalDateTime): MutableList<Bill>
+
+    @Transaction
+    @Query("SELECT * FROM head,item WHERE time >= :date")
+    fun getBillsFilteredByDateMinLimit(date:LocalDateTime): MutableList<Bill>
+
+    @Transaction
+    @Query("SELECT * FROM head,item WHERE time >= :dateMin AND time <= :dateMax")
+    fun getBillsFilteredByDateBetween(dateMin:LocalDateTime, dateMax:LocalDateTime): MutableList<Bill>
 
 }

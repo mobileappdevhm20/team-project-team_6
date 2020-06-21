@@ -13,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.time.LocalDateTime
 
 class EasyBillViewModel(
     private val headDao: HeadDao,
@@ -131,11 +132,27 @@ class EasyBillViewModel(
     }
 
     fun getBillsbySum(int: Int) = uiScope.launch {
-        suspendedFilteredBillsBySum(int)
+        suspendedFilteredBillsBySumMax(int)
     }
 
-    private suspend fun suspendedFilteredBillsBySum(int: Int) = withContext(Dispatchers.IO) {
+    private suspend fun suspendedFilteredBillsBySumMax(int: Int) = withContext(Dispatchers.IO) {
         val allBills = billDao.getBillsFilteredBySumMaxLimit(int.toDouble())
+
+        privBills.value?.clear();
+
+        for (bill in allBills) {
+            if (!privBills.value!!.any { b -> b.head.id == bill.head.id }) {
+                privBills.value!!.add(bill)
+            }
+        }
+    }
+
+    fun getBillsbyDate(date: LocalDateTime) = uiScope.launch {
+        suspendedFilteredBillsByDateMax(date)
+    }
+
+    private suspend fun suspendedFilteredBillsByDateMax(date: LocalDateTime) = withContext(Dispatchers.IO) {
+        val allBills = billDao.getBillsFilteredByDateMaxLimit(date)
 
         privBills.value?.clear();
 
