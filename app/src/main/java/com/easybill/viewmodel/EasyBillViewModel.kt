@@ -129,4 +129,20 @@ class EasyBillViewModel(
             }
         }
     }
+
+    fun getBillsbySum(int: Int) = uiScope.launch {
+        suspendedFilteredBillsBySum(int)
+    }
+
+    private suspend fun suspendedFilteredBillsBySum(int: Int) = withContext(Dispatchers.IO) {
+        val allBills = billDao.getBillsFilteredBySumMaxLimit(int.toDouble())
+
+        privBills.value?.clear();
+
+        for (bill in allBills) {
+            if (!privBills.value!!.any { b -> b.head.id == bill.head.id }) {
+                privBills.value!!.add(bill)
+            }
+        }
+    }
 }

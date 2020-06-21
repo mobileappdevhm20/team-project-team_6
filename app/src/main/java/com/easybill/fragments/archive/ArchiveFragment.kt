@@ -74,6 +74,7 @@ class ArchiveFragment : Fragment() {
         viewModel.getAllBills()
 
         /*
+
          * Navigate to ScanFragment
          */
         binding.buttonAdd.setOnClickListener { view: View ->
