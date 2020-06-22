@@ -21,7 +21,11 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
+import com.github.mikephil.charting.listener.ChartTouchListener
+import com.github.mikephil.charting.listener.OnChartGestureListener
 import timber.log.Timber
+import java.util.*
+import kotlin.concurrent.schedule
 
 
 class ArchiveFragment : Fragment() {
@@ -115,7 +119,7 @@ class ArchiveFragment : Fragment() {
             )
         )*/
         timelineChart.setViewPortOffsets(50f, 25f, 50f, -10f)
-        timelineChart.xAxis.labelCount = 4
+        timelineChart.isScaleYEnabled = false
 
         // chart x-axis
         val xAxisValueFormatter: ValueFormatter = object: ValueFormatter() {
@@ -129,6 +133,7 @@ class ArchiveFragment : Fragment() {
         timelineChart.xAxis.setDrawAxisLine(false)
         timelineChart.xAxis.setDrawGridLines(false)
         timelineChart.xAxis.spaceMax = 10f
+        timelineChart.xAxis.labelCount = 4
 
         // chart y-axis
         timelineChart.axisLeft.isEnabled = false
