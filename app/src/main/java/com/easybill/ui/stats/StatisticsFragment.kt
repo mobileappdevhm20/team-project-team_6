@@ -108,6 +108,7 @@ class StatisticsFragment : Fragment() {
         lineChart.xAxis.valueFormatter = xAxisValueFormatter
         lineChart.xAxis.yOffset = 0f
         lineChart.xAxis.setDrawGridLines(true)
+        lineChart.xAxis.labelCount = 4
 
         // chart y-axis
         val yAxisValueFormatter: ValueFormatter = object: ValueFormatter() {
@@ -172,6 +173,9 @@ class StatisticsFragment : Fragment() {
         val bills = sortedBills.filter {
             it.header.getDateTimeMillies() in from..to
         }.sortedBy { it.header.getDateTimeMillies() }
+
+        if (bills.isEmpty())
+            return
 
         fromTextView.text = timeStampToShortString(from)
         toTextView.text = timeStampToShortString(to)

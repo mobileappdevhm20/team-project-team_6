@@ -10,82 +10,91 @@
     </data>
 
     <LinearLayout
-        tools:context=".ui.detailedbill.DetailedBillFragment"
+        android:id="@+id/fragment_bill_details"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="fill_parent"
         android:orientation="vertical"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:id="@+id/fragment_bill_details">
-
-        <TextView
-            android:id="@+id/detailed_bill_title"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="4dp"
-            android:text="@{bill.header.companyName}"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/detailed_bill_address"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@{bill.header.address}"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/detailed_bill_title" />
-
-        <TextView
-            android:id="@+id/detailed_bill_datetime"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@{bill.header.dateTimeAsString}"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/detailed_bill_address" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/bill_details_recyclerview"
-            android:layout_marginTop="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        tools:context=".ui.detailedbill.DetailedBillFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
-            >
+            android:background="@color/colorPrimaryLight"
+            android:orientation="vertical"
+            android:paddingVertical="12dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/detailed_bill_title"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end|bottom"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:text="@{bill.header.companyName}"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/detailed_bill_address"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:text="@{bill.header.address}"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/detailed_bill_title" />
+
+            <TextView
+                android:id="@+id/detailed_bill_datetime"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:text="@{bill.header.dateTimeAsString}"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/detailed_bill_address" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/bill_details_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:gravity="end"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
+                android:gravity="end"
                 android:text="@string/fragmentBillDetailsTotal"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/detailed_bill_total"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end|bottom"
-                android:text="@{bill.getTotalAsString}"
-                android:textSize="28sp"
-                android:layout_marginBottom="?attr/actionBarSize"
-                android:textStyle="bold" />
+                android:layout_marginEnd="10dp"
+                android:gravity="end"
+                android:textStyle="bold"
+                android:text="@{bill.totalAsString}"
+                android:textSize="24sp" />
+
         </LinearLayout>
 
     </LinearLayout>

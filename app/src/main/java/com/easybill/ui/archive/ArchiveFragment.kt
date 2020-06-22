@@ -30,8 +30,6 @@ class ArchiveFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
 
-    private var recyclerViewLayoutManager: LinearLayoutManager? = null
-
     private lateinit var timelineChart: LineChart
 
     private lateinit var emptyArchiveTextView: TextView
@@ -43,7 +41,6 @@ class ArchiveFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
-        recyclerViewLayoutManager = LinearLayoutManager(context)
     }
 
     override fun onCreateView(
@@ -57,13 +54,13 @@ class ArchiveFragment : Fragment() {
         timelineChart = root.findViewById(R.id.timeline_char)
 
         // setup RecyclerView
+        val recyclerViewLayoutManager = LinearLayoutManager(context)
         val onScrollListener = object: RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                val first = recyclerViewLayoutManager?.findFirstVisibleItemPosition()
-                val last = recyclerViewLayoutManager?.findLastVisibleItemPosition()
-                if (first != null)
-                    viewModel.setRecyclerViewPosition(first)
+                val first = recyclerViewLayoutManager.findFirstVisibleItemPosition()
+                val last = recyclerViewLayoutManager.findLastVisibleItemPosition()
+                viewModel.setRecyclerViewPosition(first)
                 highlightTimelineEntries(first, last)
             }
         }
@@ -112,12 +109,13 @@ class ArchiveFragment : Fragment() {
         // chart general
         timelineChart.legend.isEnabled = false
         timelineChart.description.isEnabled = false
-        timelineChart.setXAxisRenderer(
+        /*timelineChart.setXAxisRenderer(
             CenteredXAxisRenderer(timelineChart.viewPortHandler, timelineChart.xAxis,
                 timelineChart.getTransformer(YAxis.AxisDependency.LEFT)
             )
-        )
+        )*/
         timelineChart.setViewPortOffsets(50f, 25f, 50f, -10f)
+        timelineChart.xAxis.labelCount = 4
 
         // chart x-axis
         val xAxisValueFormatter: ValueFormatter = object: ValueFormatter() {

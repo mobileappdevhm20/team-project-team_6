@@ -25,4 +25,5 @@
     <string name="statistics_time_from">From</string>
     <string name="statistics_time_to">To</string>
     <string name="title_timeline">Show timeline</string>
+    <string name="go_to_bill">Go to Bill</string>
 </resources>
