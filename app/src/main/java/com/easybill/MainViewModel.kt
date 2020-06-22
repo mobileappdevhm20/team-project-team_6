@@ -141,8 +141,14 @@ class MainViewModel (
      * Delete bill by id.
      */
     fun deleteBillById(id: Long) = uiScope.launch {
-        deleteBillByIdAsync(id)
-        getBillsAsync()
+        val actualBills = bills.value
+        if (actualBills != null) {
+            val newBills = actualBills.filter { it.header.headerId != id }
+            if (newBills.size < actualBills.size) {
+                _bills.value = newBills
+                deleteBillByIdAsync(id)
+            }
+        }
     }
 
     private suspend fun deleteBillByIdAsync(id: Long) =
