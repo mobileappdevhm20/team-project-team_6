@@ -7,4 +7,6 @@
     <color name="colorText">#FFFFFF</color>
     <color name="colorLightGrey">#FF778899</color>
     <color name="colorLightGreyTransparent">#50778899</color>
+    <color name="colorGreenSuccess">#25FB00</color>
+    <color name="colorRedFail">#FF0000</color>
 </resources>
