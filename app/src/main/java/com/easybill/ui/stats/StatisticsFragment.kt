@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import kotlin.concurrent.schedule
 import androidx.lifecycle.ViewModelProvider
 import com.easybill.MainActivity
 import com.easybill.MainViewModel
@@ -24,7 +23,9 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.listener.ChartTouchListener.ChartGesture
 import com.github.mikephil.charting.listener.OnChartGestureListener
-import java.util.*
+import java.util.Timer
+import java.util.TimerTask
+import kotlin.concurrent.schedule
 
 class StatisticsFragment : Fragment() {
 
@@ -62,9 +63,9 @@ class StatisticsFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_statistics, container, false)
 
@@ -84,7 +85,7 @@ class StatisticsFragment : Fragment() {
         val showWhenEmpty: List<View?> = listOf(emptyArchiveTextView)
         val showWhenNotEmpty: List<View?> = listOf(chartLayout, fromToLayout, statisticsBodyLayout)
         sortedBills = viewModel.bills.value
-            ?.sortedBy { b -> b.header.getDateTimeMillies() }?: listOf()
+            ?.sortedBy { b -> b.header.getDateTimeMillies() } ?: listOf()
 
         // only show chart etc. when there are bills in the archive
         showContentViewOrEmptyView(sortedBills, showWhenNotEmpty, showWhenEmpty)
@@ -99,7 +100,7 @@ class StatisticsFragment : Fragment() {
         lineChart.onChartGestureListener = chartGestureListener
 
         // chart x-axis
-        val xAxisValueFormatter: ValueFormatter = object: ValueFormatter() {
+        val xAxisValueFormatter: ValueFormatter = object : ValueFormatter() {
             override fun getFormattedValue(value: Float): String {
                 return timeStampToShortString(value.toLong())
             }
@@ -111,7 +112,7 @@ class StatisticsFragment : Fragment() {
         lineChart.xAxis.labelCount = 4
 
         // chart y-axis
-        val yAxisValueFormatter: ValueFormatter = object: ValueFormatter() {
+        val yAxisValueFormatter: ValueFormatter = object : ValueFormatter() {
             override fun getFormattedValue(value: Float): String {
                 return priceToString(value.toDouble())
             }
@@ -141,7 +142,7 @@ class StatisticsFragment : Fragment() {
         return root
     }
 
-    private val chartGestureListener: OnChartGestureListener = object: OnChartGestureListener {
+    private val chartGestureListener: OnChartGestureListener = object : OnChartGestureListener {
         val timer: Timer = Timer("chartGestureListener", true)
         var task: TimerTask? = null
 
@@ -183,7 +184,7 @@ class StatisticsFragment : Fragment() {
         totalPriceValueTextView.text = priceToString(bills.sumByDouble { it.getTotal() })
         cheapestValueTextView.text = priceToString(bills.map { it.getTotal() }.last())
         averageValueTextView.text = priceToString(
-            bills.sumByDouble { it.getTotal()} / bills.size.toDouble()
+            bills.sumByDouble { it.getTotal() } / bills.size.toDouble()
         )
         highestValueTextView.text = priceToString(bills.map { it.getTotal() }.first())
     }

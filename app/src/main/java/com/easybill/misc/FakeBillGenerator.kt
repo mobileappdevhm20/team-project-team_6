@@ -29,7 +29,6 @@ fun generateFakeHeader(): BillHeader {
     header.companyName = companyNames.random()
     header.dateTime = LocalDateTime.ofEpochSecond(RandomNumberGenerator
         .nextLong(1498002828, 1592697228), 0, ZoneOffset.UTC)
-    val bla = header.getDateTimeAsString()
     return header
 }
 
@@ -143,7 +142,7 @@ private val addresses = listOf(
  * 4. enjoy the time-save
  */
 private val companyNames = listOf(
-    "Ahg Autohandelsgesellschaft", 
+    "Ahg Autohandelsgesellschaft",
     "Akzenta",
     "Aldi",
     "AllerWeltHaus",
@@ -281,7 +280,7 @@ fun generateFakeItem(): BillItem {
  * 4. enjoy the time-save
  */
 private val itemNames = listOf(
-    "Astra HD+ Verlängerung für 12 Monate", 
+    "Astra HD+ Verlängerung für 12 Monate",
     "Braun IRT 6520 ThermoScan 7",
     "Samsung 860 Evo 1TB 2.5",
     "Bode Sterillium Lösung (500 ml)",
@@ -342,4 +341,3 @@ private val itemNames = listOf(
     "Beurer FT 85",
     "Hamax Outback grey"
 )
-

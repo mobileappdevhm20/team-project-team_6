@@ -2,7 +2,12 @@ package com.easybill.ui.archive
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -12,21 +17,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.easybill.MainActivity
 import com.easybill.MainViewModel
-import com.easybill.misc.*
 import com.easybill.R
 import com.easybill.misc.DividerItemDecorator
+import com.easybill.misc.showContentViewOrEmptyView
+import com.easybill.misc.timeStampToShortString
 import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
-import com.github.mikephil.charting.listener.ChartTouchListener
-import com.github.mikephil.charting.listener.OnChartGestureListener
 import timber.log.Timber
-import java.util.*
-import kotlin.concurrent.schedule
-
 
 class ArchiveFragment : Fragment() {
 
@@ -48,9 +48,9 @@ class ArchiveFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_archive, container, false)
 
@@ -59,7 +59,7 @@ class ArchiveFragment : Fragment() {
 
         // setup RecyclerView
         val recyclerViewLayoutManager = LinearLayoutManager(context)
-        val onScrollListener = object: RecyclerView.OnScrollListener() {
+        val onScrollListener = object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val first = recyclerViewLayoutManager.findFirstVisibleItemPosition()
@@ -96,7 +96,7 @@ class ArchiveFragment : Fragment() {
         showContentViewOrEmptyView(viewModel.bills.value,
             listOf(recyclerView), listOf(emptyArchiveTextView))
 
-         // actionbar, enable menu and set subtitle
+        // actionbar, enable menu and set subtitle
         setHasOptionsMenu(true)
         (activity as MainActivity).supportActionBar?.subtitle = "Showing 44 / 57 bills"
 
@@ -122,7 +122,7 @@ class ArchiveFragment : Fragment() {
         timelineChart.isScaleYEnabled = false
 
         // chart x-axis
-        val xAxisValueFormatter: ValueFormatter = object: ValueFormatter() {
+        val xAxisValueFormatter: ValueFormatter = object : ValueFormatter() {
             override fun getFormattedValue(value: Float): String {
                 return timeStampToShortString(value.toLong())
             }
@@ -141,7 +141,7 @@ class ArchiveFragment : Fragment() {
 
         // build chart-entries with point=(x, y, bill)
         val sortedBills = viewModel.bills.value
-            ?.sortedBy { b -> b.header.getDateTimeMillies() }?: listOf()
+            ?.sortedBy { b -> b.header.getDateTimeMillies() } ?: listOf()
         val entries = sortedBills.map {
             Entry(it.header.getDateTimeMillies().toFloat(), 0f, it)
         }
@@ -171,7 +171,7 @@ class ArchiveFragment : Fragment() {
             return
 
         val sortedBills = viewModel.bills.value
-            ?.sortedBy { b -> b.header.getDateTimeMillies() }?: listOf()
+            ?.sortedBy { b -> b.header.getDateTimeMillies() } ?: listOf()
 
         // active entries
         val activeEntries = sortedBills.subList(first, last).map {
@@ -183,7 +183,7 @@ class ArchiveFragment : Fragment() {
         activeDataSet.valueTextSize = 0f
 
         // inactive entries
-        val inactiveEntries = sortedBills.filterIndexed { i, _ -> i < first || i > last}.map {
+        val inactiveEntries = sortedBills.filterIndexed { i, _ -> i < first || i > last }.map {
             Entry(it.header.getDateTimeMillies().toFloat(), 0f, it)
         }
         val inactiveDataSet = LineDataSet(inactiveEntries, "")
@@ -202,11 +202,11 @@ class ArchiveFragment : Fragment() {
     private fun initFilterDialog() {
         val builder: AlertDialog.Builder? = activity?.let {
             val builder = AlertDialog.Builder(it)
-            val inflater = requireActivity().layoutInflater;
+            val inflater = requireActivity().layoutInflater
             builder.apply {
                 setView(inflater.inflate(R.layout.dialog_filter, null))
-                setPositiveButton("OK") { dialog, which -> Timber.i("ok") }
-                setNegativeButton("NO") { dialog, which -> Timber.i("no") }
+                setPositiveButton("OK") { _, _ -> Timber.i("ok") }
+                setNegativeButton("NO") { _, _ -> Timber.i("no") }
                 setTitle(R.string.filter_dialog_title)
             }
         }

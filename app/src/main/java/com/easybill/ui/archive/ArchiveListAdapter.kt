@@ -22,7 +22,6 @@ class ArchiveListAdapter(
 
             // navigate to detailed-bill view
             itemView.setOnClickListener {
-                val x = it.findNavController()
                 it.findNavController().navigate(
                     ArchiveFragmentDirections
                         .actionFragmentArchiveToDetailedBill(bill.header.headerId)

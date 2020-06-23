@@ -6,7 +6,8 @@ import com.easybill.data.Converters
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.time.format.DateTimeFormatter
-import java.util.*
+import java.util.Currency
+import java.util.Locale
 
 fun dpToPx(dp: Int): Int {
     return (dp * Resources.getSystem().displayMetrics.density).toInt()
@@ -17,19 +18,22 @@ fun pxToDp(px: Int): Int {
 }
 
 fun showContentViewOrEmptyView(
-    list: List<*>?, contentView: List<View?>, emptyView: List<View?>) {
+    list: List<*>?,
+    contentView: List<View?>,
+    emptyView: List<View?>
+) {
 
     if (list != null) {
         if (list.isEmpty()) {
             contentView.filterNotNull().forEach { it.visibility = View.GONE }
-            emptyView.filterNotNull().forEach{ it.visibility = View.VISIBLE }
+            emptyView.filterNotNull().forEach { it.visibility = View.VISIBLE }
         } else {
             contentView.filterNotNull().forEach { it.visibility = View.VISIBLE }
-            emptyView.filterNotNull().forEach{ it.visibility = View.GONE }
+            emptyView.filterNotNull().forEach { it.visibility = View.GONE }
         }
     } else {
         contentView.filterNotNull().forEach { it.visibility = View.GONE }
-        emptyView.filterNotNull().forEach{ it.visibility = View.VISIBLE }
+        emptyView.filterNotNull().forEach { it.visibility = View.VISIBLE }
     }
 }
 

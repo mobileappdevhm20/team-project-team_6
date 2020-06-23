@@ -1,7 +1,6 @@
 package com.easybill
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -9,11 +8,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.easybill.data.Converters
 import com.easybill.data.Database
-import com.easybill.data.model.Bill
-import com.easybill.data.model.BillHeader
-import com.easybill.data.model.BillItem
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
@@ -54,7 +50,6 @@ class MainActivity : AppCompatActivity() {
         if (navController != null) {
             setupActionBarWithNavController(navController, bottomMenuActionBar)
             bottomNavView.setupWithNavController(navController)
-
         }
     }
 

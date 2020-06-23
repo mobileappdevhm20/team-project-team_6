@@ -2,7 +2,13 @@ package com.easybill.ui.detailedbill
 
 import android.os.Bundle
 import android.util.TypedValue
-import android.view.*
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -67,7 +73,7 @@ class DetailedBillFragment : Fragment() {
          * ActionBar (top)
          */
         setHasOptionsMenu(true)
-        (activity as MainActivity).supportActionBar?.title =       // Set title
+        (activity as MainActivity).supportActionBar?.title = // Set title
             "Details of Bill # ${bill.header.headerId}"
         (activity as MainActivity).supportActionBar?.subtitle = "" // Set subtitle
 

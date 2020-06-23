@@ -4,20 +4,19 @@ import androidx.room.Embedded
 import androidx.room.Relation
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
-import java.time.format.DateTimeFormatter
-import java.time.format.TextStyle
-import java.util.*
+import java.util.Currency
+import java.util.Locale
 
 /**
  * A Bill consists of a bill-header and a list of bill-items.
  */
-data class Bill (
+data class Bill(
     @Embedded var header: BillHeader = BillHeader(),
 
     @Relation(parentColumn = "headerId", entityColumn = "billId")
     var items: List<BillItem> = listOf()
 ) {
-    fun getTotal() : Double {
+    fun getTotal(): Double {
         var total = 0.0
         for (item in items)
             total += item.price

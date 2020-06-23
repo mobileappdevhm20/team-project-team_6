@@ -7,9 +7,13 @@ import com.easybill.data.dao.BillDao
 import com.easybill.data.dao.BillHeaderDao
 import com.easybill.data.dao.BillItemDao
 import com.easybill.data.model.Bill
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class MainViewModel (
+class MainViewModel(
     private val billDao: BillDao,
     private val billHeaderDao: BillHeaderDao,
     private val billItemDao: BillItemDao
@@ -40,7 +44,7 @@ class MainViewModel (
     private var orderByPrice = false
     private var orderByTime = false
     private var orderByPriceOrder = Ordering.ASCENDING // TODO: this should come from persisted preferences
-    private var orderByTimeOrder = Ordering.ASCENDING  // so the app always starts with the same ordering
+    private var orderByTimeOrder = Ordering.ASCENDING // so the app always starts with the same ordering
 
     init {
         _recyclerViewPosition.postValue(0)
