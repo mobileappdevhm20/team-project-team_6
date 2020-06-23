@@ -1,0 +1,6 @@
+.gradle
+.idea
+EasyBill.iml
+app/app.iml
+build
+local.properties
