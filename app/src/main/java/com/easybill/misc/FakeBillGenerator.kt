@@ -27,8 +27,11 @@ fun generateFakeHeader(): BillHeader {
     val header = BillHeader()
     header.address = addresses.random()
     header.companyName = companyNames.random()
-    header.dateTime = LocalDateTime.ofEpochSecond(RandomNumberGenerator
-        .nextLong(1498002828, 1592697228), 0, ZoneOffset.UTC)
+    header.dateTime = LocalDateTime.ofEpochSecond(
+        RandomNumberGenerator
+            .nextLong(1498002828, 1592697228),
+        0, ZoneOffset.UTC
+    )
     return header
 }
 

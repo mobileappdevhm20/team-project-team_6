@@ -48,8 +48,10 @@ class DetailedBillFragment : Fragment() {
          * Binding
          */
         val binding: FragmentBillDetailsBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_bill_details,
-                container, false)
+            DataBindingUtil.inflate(
+                inflater, R.layout.fragment_bill_details,
+                container, false
+            )
 
         /*
          * Get Bill
@@ -109,7 +111,8 @@ class DetailedBillFragment : Fragment() {
                  * Bill deleted Toast
                  */
                 val toast = Toast.makeText(
-                    context, "Deleted Bill # $currentBillHeaderId", Toast.LENGTH_SHORT)
+                    context, "Deleted Bill # $currentBillHeaderId", Toast.LENGTH_SHORT
+                )
                 val tv = TypedValue() // get height of menu-bar for toast-offset
                 if (requireActivity().theme.resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
                     val actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, resources.displayMetrics)

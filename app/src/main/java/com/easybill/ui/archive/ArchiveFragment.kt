@@ -70,7 +70,8 @@ class ArchiveFragment : Fragment() {
         }
         recyclerView = root.findViewById(R.id.recyclerView)
         val dividerItemDecorator = DividerItemDecorator(
-            ContextCompat.getDrawable(recyclerView.context, R.drawable.divider))
+            ContextCompat.getDrawable(recyclerView.context, R.drawable.divider)
+        )
         recyclerView.addItemDecoration(dividerItemDecorator)
         recyclerView.layoutManager = recyclerViewLayoutManager
         recyclerView.adapter = adapter
@@ -82,19 +83,26 @@ class ArchiveFragment : Fragment() {
             recyclerView.scrollToPosition(lastPos)
 
         // observe bills, notify RecyclerView on update
-        viewModel.bills.observe(viewLifecycleOwner, Observer {
-            adapter.bills = it
-            adapter.notifyDataSetChanged()
-            showContentViewOrEmptyView(viewModel.bills.value,
-                listOf(recyclerView), listOf(emptyArchiveTextView))
-        })
+        viewModel.bills.observe(
+            viewLifecycleOwner,
+            Observer {
+                adapter.bills = it
+                adapter.notifyDataSetChanged()
+                showContentViewOrEmptyView(
+                    viewModel.bills.value,
+                    listOf(recyclerView), listOf(emptyArchiveTextView)
+                )
+            }
+        )
 
         // initialize timeline-chart
         initTimelineChart()
 
         // only show RecyclerView etc. when there are bills in the archive
-        showContentViewOrEmptyView(viewModel.bills.value,
-            listOf(recyclerView), listOf(emptyArchiveTextView))
+        showContentViewOrEmptyView(
+            viewModel.bills.value,
+            listOf(recyclerView), listOf(emptyArchiveTextView)
+        )
 
         // actionbar, enable menu and set subtitle
         setHasOptionsMenu(true)
@@ -158,12 +166,15 @@ class ArchiveFragment : Fragment() {
         timelineChart.invalidate()
 
         // observe visibility of timeline-chart and set it
-        viewModel.showTimeLine.observe(viewLifecycleOwner, Observer {
-            if (it)
-                timelineChart.visibility = View.VISIBLE
-            else
-                timelineChart.visibility = View.GONE
-        })
+        viewModel.showTimeLine.observe(
+            viewLifecycleOwner,
+            Observer {
+                if (it)
+                    timelineChart.visibility = View.VISIBLE
+                else
+                    timelineChart.visibility = View.GONE
+            }
+        )
     }
 
     private fun highlightTimelineEntries(first: Int?, last: Int?) {
