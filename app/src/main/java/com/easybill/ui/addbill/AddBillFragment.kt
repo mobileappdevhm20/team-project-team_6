@@ -56,7 +56,7 @@ class AddBillFragment : Fragment() {
         }
 
         val cameraButton: Button = root.findViewById(R.id.camera_button)
-        cameraButton.setOnClickListener {openCamera() }
+        cameraButton.setOnClickListener { openCamera() }
 
         scanButton = root.findViewById(R.id.scan_button)
         scanButton.setOnClickListener { scanPhoto() }
@@ -83,7 +83,7 @@ class AddBillFragment : Fragment() {
         CropImage.activity()
             .setActivityTitle("Crop Photo")
             .setAllowFlipping(false)
-            .start(requireContext(), this);
+            .start(requireContext(), this)
         setInitialViewsState()
     }
 
@@ -110,7 +110,7 @@ class AddBillFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        when(requestCode) {
+        when (requestCode) {
             CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
                 val result = CropImage.getActivityResult(data)
                 if (resultCode == Activity.RESULT_OK) {
