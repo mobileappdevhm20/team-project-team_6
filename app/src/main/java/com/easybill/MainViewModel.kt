@@ -13,7 +13,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.time.LocalDateTime
-import java.util.*
 
 class MainViewModel(
     private val billDao: BillDao,
@@ -131,10 +130,10 @@ class MainViewModel(
      */
     fun getBillsFilteredByPrice(min: Int, max: Int) = uiScope.launch { getBillsFilteredByPriceAsync(min, max) }
 
-    private suspend fun getBillsFilteredByPriceAsync(min:Int, max: Int) =
+    private suspend fun getBillsFilteredByPriceAsync(min: Int, max: Int) =
         withContext(Dispatchers.IO) {
             val bills = billDao.getBills().filter {
-                it.items.sumByDouble { it2 -> it2.price } >= min &&  it.items.sumByDouble { it2 -> it2.price } <= max
+                it.items.sumByDouble { it2 -> it2.price } >= min && it.items.sumByDouble { it2 -> it2.price } <= max
             }
             _bills.postValue(bills)
         }
@@ -142,9 +141,9 @@ class MainViewModel(
     /**
      * Get Bills, filtered by Date
      */
-    fun getBillsFilteredByDate(min:LocalDateTime, max: LocalDateTime) = uiScope.launch { getBillsFilteredByDateAsnyc(min, max) }
+    fun getBillsFilteredByDate(min: LocalDateTime, max: LocalDateTime) = uiScope.launch { getBillsFilteredByDateAsnyc(min, max)}
 
-    private suspend fun getBillsFilteredByDateAsnyc(min:LocalDateTime, max: LocalDateTime) =
+    private suspend fun getBillsFilteredByDateAsnyc(min: LocalDateTime, max: LocalDateTime) =
         withContext(Dispatchers.IO) {
             val bills = billDao.getBills().filter {
                 it.header.dateTime in min..max
@@ -155,7 +154,7 @@ class MainViewModel(
     /**
      * Get Bills, filtered by Price and Date
      */
-    fun getBillsFilteredByPriceandDate(minPrice: Int, maxPrice: Int, minYear:Int, maxYear:Int) = uiScope.launch { getBillsFilteredByPriceandDateAsync(minPrice, maxPrice,minYear, maxYear) }
+    fun getBillsFilteredByPriceandDate(minPrice: Int, maxPrice: Int, minYear: Int, maxYear: Int) = uiScope.launch { getBillsFilteredByPriceandDateAsync(minPrice, maxPrice, minYear, maxYear) }
 
     private suspend fun getBillsFilteredByPriceandDateAsync(minPrice: Int, maxPrice: Int, minYear:Int, maxYear:Int) =
         withContext(Dispatchers.IO) {
@@ -164,8 +163,6 @@ class MainViewModel(
             }
             _bills.postValue(bills)
         }
-
-
 
     /**
      * Add a Bill.
@@ -220,6 +217,4 @@ class MainViewModel(
         if (cur != null)
             _recyclerViewPosition.postValue(pos)
     }
-
-
 }
