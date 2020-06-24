@@ -222,8 +222,8 @@ class ArchiveFragment : Fragment() {
 
             builder.apply {
                 setView(inflater.inflate(R.layout.dialog_filter, null))
-                setPositiveButton("apply filter") {_, _->}
-                setNegativeButton("close") {_, _->}
+                setPositiveButton("apply filter") { _, _ -> }
+                setNegativeButton("close") { _, _ -> }
                 setTitle(R.string.filter_dialog_title)
             }
         }
