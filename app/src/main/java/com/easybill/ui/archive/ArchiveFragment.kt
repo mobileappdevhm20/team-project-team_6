@@ -26,7 +26,11 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
-import timber.log.Timber
+import com.jem.rubberpicker.ElasticBehavior
+import com.jem.rubberpicker.RubberRangePicker
+import java.sql.Timestamp
+import java.time.LocalDate
+import java.time.LocalDateTime
 
 class ArchiveFragment : Fragment() {
 
@@ -56,6 +60,7 @@ class ArchiveFragment : Fragment() {
 
         emptyArchiveTextView = root.findViewById(R.id.empty_view)
         timelineChart = root.findViewById(R.id.timeline_char)
+
 
         // setup RecyclerView
         val recyclerViewLayoutManager = LinearLayoutManager(context)
@@ -111,8 +116,11 @@ class ArchiveFragment : Fragment() {
         // initialize filter dialog
         initFilterDialog()
 
+
         return root
     }
+
+
 
     /*
      * Initializes the timeline-chart
@@ -211,17 +219,23 @@ class ArchiveFragment : Fragment() {
      * Initializes the filter-dialog.
      */
     private fun initFilterDialog() {
+
+
         val builder: AlertDialog.Builder? = activity?.let {
             val builder = AlertDialog.Builder(it)
             val inflater = requireActivity().layoutInflater
+
             builder.apply {
                 setView(inflater.inflate(R.layout.dialog_filter, null))
-                setPositiveButton("OK") { _, _ -> Timber.i("ok") }
-                setNegativeButton("NO") { _, _ -> Timber.i("no") }
+                setPositiveButton("apply filter") { _, _ -> }
+                setNegativeButton("close") { _, _ ->  }
                 setTitle(R.string.filter_dialog_title)
             }
         }
+
         filterDialog = builder?.create()
+
+
     }
 
     /*
@@ -239,6 +253,56 @@ class ArchiveFragment : Fragment() {
         when (item.itemId) {
             R.id.action_filter -> {
                 filterDialog?.show()
+
+
+                //SetRubberSetBar Price
+
+                val rubberRangePicker = filterDialog?.findViewById<RubberRangePicker>(R.id.priceRubberRangePicker)
+                rubberRangePicker?.setElasticBehavior(ElasticBehavior.CUBIC)
+                rubberRangePicker?.setMax(900)
+
+                rubberRangePicker?.setOnRubberRangePickerChangeListener(object: RubberRangePicker.OnRubberRangePickerChangeListener{
+                    override fun onProgressChanged(rangePicker: RubberRangePicker, startValue: Int, endValue: Int, fromUser: Boolean) {
+                        filterDialog?.findViewById<TextView>(R.id.currentPrice)?.text = rangePicker.getCurrentStartValue().toString() + " - " + rangePicker.getCurrentEndValue()
+                    }
+                    override fun onStartTrackingTouch(rangePicker: RubberRangePicker, isStartThumb: Boolean) {}
+                    override fun onStopTrackingTouch(rangePicker: RubberRangePicker, isStartThumb: Boolean) {
+
+                    }
+                })
+
+                //set RubberRangePicker for date
+                val rubberRangePickerDate = filterDialog?.findViewById<RubberRangePicker>(R.id.dateRubberRangePicker)
+                rubberRangePickerDate?.setElasticBehavior(ElasticBehavior.CUBIC)
+                rubberRangePickerDate?.setMax(LocalDateTime.now().year)
+
+                rubberRangePickerDate?.setMin((LocalDateTime.now().year-20))
+
+                rubberRangePickerDate?.setOnRubberRangePickerChangeListener(object: RubberRangePicker.OnRubberRangePickerChangeListener{
+                    override fun onProgressChanged(rangePicker: RubberRangePicker, startValue: Int, endValue: Int, fromUser: Boolean) {
+                        filterDialog?.findViewById<TextView>(R.id.currentDate)?.text = rangePicker.getCurrentStartValue().toString() + " - " + rangePicker.getCurrentEndValue()
+                    }
+                    override fun onStartTrackingTouch(rangePicker: RubberRangePicker, isStartThumb: Boolean) {}
+                    override fun onStopTrackingTouch(rangePicker: RubberRangePicker, isStartThumb: Boolean) {
+
+                    }
+                })
+
+                //Set Button colors to match
+
+                filterDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+                filterDialog?.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+
+                filterDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setOnClickListener {
+                    viewModel.getBillsFilteredByPriceandDate(
+                        rubberRangePicker?.getCurrentStartValue()!!,
+                        rubberRangePicker?.getCurrentEndValue()!!,
+                        rubberRangePickerDate?.getCurrentStartValue()!!,
+                    rubberRangePickerDate.getCurrentEndValue()!!)
+                    filterDialog?.dismiss()
+                }
+
+
             }
             R.id.action_timeline -> {
                 viewModel.onShowTimeline()

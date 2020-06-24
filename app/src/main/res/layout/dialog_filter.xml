@@ -12,12 +12,20 @@
         android:text="@string/dialog_filter_by_price" />
 
     <com.jem.rubberpicker.RubberRangePicker
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/priceRubberRangePicker"
+        android:layout_width="324dp"
+        android:layout_height="106dp"
         android:layout_marginTop="12dp"
-        app:minValue="0"
+        app:elasticBehavior="rigid"
         app:maxValue="100"
-        app:elasticBehavior="rigid" />
+        app:minValue="0" />
+
+    <TextView
+        android:id="@+id/currentPrice"
+        android:layout_width="316dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
@@ -25,11 +33,19 @@
         android:text="@string/dialog_filter_by_time" />
 
     <com.jem.rubberpicker.RubberRangePicker
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/dateRubberRangePicker"
+        android:layout_width="325dp"
+        android:layout_height="77dp"
         android:layout_marginTop="12dp"
-        app:minValue="0"
+        app:elasticBehavior="rigid"
         app:maxValue="100"
-        app:elasticBehavior="rigid" />
+        app:minValue="0" />
+
+    <TextView
+        android:id="@+id/currentDate"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0" />
 
 </LinearLayout>
