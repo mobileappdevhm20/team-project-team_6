@@ -159,7 +159,7 @@ class MainViewModel(
     private suspend fun getBillsFilteredByPriceandDateAsync(minPrice: Int, maxPrice: Int, minYear: Int, maxYear: Int) =
         withContext(Dispatchers.IO) {
             val bills = billDao.getBills().filter {
-                it.items.sumByDouble { it2 -> it2.price } >= minPrice &&  it.items.sumByDouble { it2 -> it2.price } <= maxPrice && it.header.dateTime.year in minYear..maxYear
+                it.items.sumByDouble { it2 -> it2.price } >= minPrice && it.items.sumByDouble { it2 -> it2.price } <= maxPrice && it.header.dateTime.year in minYear..maxYear
             }
             _bills.postValue(bills)
         }
