@@ -18,11 +18,11 @@ __[Click me for the demo!](https://www.figma.com/file/U0r2xmu9Fyja9gI72Z8CTx/Eas
 
 ### Screenshots of our Prototype
 <div class="row">
-<img src="https://github.com/mobileappdevhm20/team-project-team_6/blob/develop/res_img/1.PNG" alt="drawing" width="160" height="330"/>
-<img src="https://github.com/mobileappdevhm20/team-project-team_6/blob/develop/res_img/2.PNG" alt="drawing" width="160" height="330"/>
-<img src="https://github.com/mobileappdevhm20/team-project-team_6/blob/develop/res_img/3.PNG" alt="drawing" width="160" height="330"/>
-<img src="https://github.com/mobileappdevhm20/team-project-team_6/blob/develop/res_img/4.PNG" alt="drawing" width="160" height="330"/>
-<img src="https://github.com/mobileappdevhm20/team-project-team_6/blob/develop/res_img/5.PNG" alt="drawing" width="160" height="330"/>
+<img src="https://github.com/mobileappdevhm20/team-project-team_6/blob/media/res_img/1.PNG" alt="drawing" width="160" height="330"/>
+<img src="https://github.com/mobileappdevhm20/team-project-team_6/blob/media/res_img/2.PNG" alt="drawing" width="160" height="330"/>
+<img src="https://github.com/mobileappdevhm20/team-project-team_6/blob/media/res_img/3.PNG" alt="drawing" width="160" height="330"/>
+<img src="https://github.com/mobileappdevhm20/team-project-team_6/blob/media/res_img/4.PNG" alt="drawing" width="160" height="330"/>
+<img src="https://github.com/mobileappdevhm20/team-project-team_6/blob/media/res_img/5.PNG" alt="drawing" width="160" height="330"/>
 </div>
 
 ## Sprint 1 - Overview
