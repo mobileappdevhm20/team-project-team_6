@@ -110,7 +110,7 @@ class ArchiveFragment : Fragment() {
 
         // actionbar, enable menu and set subtitle
         setHasOptionsMenu(true)
-        (activity as MainActivity).supportActionBar?.subtitle = "Showing 44 / 57 bills"
+        (activity as MainActivity).supportActionBar?.subtitle = ""
 
         // initialize filter dialog
         initFilterDialog()
