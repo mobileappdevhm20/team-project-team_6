@@ -2,7 +2,9 @@ package com.easybill.ui.addbill
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +12,21 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.camera.core.ImageAnalysis
+import androidx.camera.core.ImageProxy
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.easybill.MainViewModel
 import com.easybill.R
 import com.easybill.misc.generateFakeBills
+import com.google.android.gms.vision.Frame
+import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.text.TextRecognition
+import com.google.mlkit.vision.text.TextRecognizer
 import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.fragment_add.view.*
+import java.io.IOException
 
 class AddBillFragment : Fragment() {
 
@@ -28,9 +37,14 @@ class AddBillFragment : Fragment() {
     private lateinit var scanButton: Button
     private lateinit var confirmButton: Button
 
+    private lateinit var image: InputImage
+    private lateinit var imageBitmap: Bitmap
+    private lateinit var recognizer: TextRecognizer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        recognizer = TextRecognition.getClient()
     }
 
     override fun onCreateView(
@@ -89,16 +103,25 @@ class AddBillFragment : Fragment() {
 
     private fun scanPhoto() {
         // TODO use OCR to scan the photo
-        // TODO check if scan was successful
-        val scanSuccessful = true
-        if (scanSuccessful) {
-            photoViewContainer.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.bill_picture_container_success))
-            scanButton.isEnabled = false
-            confirmButton.isEnabled = true
-        } else {
-            photoViewContainer.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.bill_picture_container_fail))
-            Toast.makeText(this.activity, "Scan failed", Toast.LENGTH_SHORT).show()
-        }
+        val result = recognizer.process(image)
+            .addOnSuccessListener { visionText ->
+                // Task completed successfully
+                // ...
+                println("##### Success!")
+                photoViewContainer.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.bill_picture_container_success))
+                scanButton.isEnabled = false
+                confirmButton.isEnabled = true
+            }
+            .addOnFailureListener { e ->
+                // Task failed with an exception
+                // ...
+                println("##### Failure!")
+                e.printStackTrace()
+                photoViewContainer.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.bill_picture_container_fail))
+                Toast.makeText(this.activity, "Scan failed", Toast.LENGTH_SHORT).show()
+            }
+        //BillRecognizer.startCameraSource(requireContext(),
+        //    Frame.Builder().setBitmap(imageBitmap).build())
     }
 
     private fun confirmPhoto() {
@@ -115,6 +138,15 @@ class AddBillFragment : Fragment() {
                 val result = CropImage.getActivityResult(data)
                 if (resultCode == Activity.RESULT_OK) {
                     photoView.setImageURI(result.uri)
+                    //val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(activity?.contentResolver, result.uri)
+                    //photoView.setImageBitmap(bitmap)
+                    try {
+                        image = InputImage.fromFilePath(requireContext(), result.uri)
+                        //imageBitmap = bitmap
+                        //image = InputImage.fromBitmap(bitmap, 0)
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
                     photoViewContainer.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.bill_picture_container))
                     scanButton.isEnabled = true
                 }
