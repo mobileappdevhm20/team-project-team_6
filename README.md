@@ -8,7 +8,7 @@ EasyBill helps you digitize, catalog and filter your bills and thus is the next 
 ## Story Board
 
 We created our storyboard in StoryboardThat.
-![Storyboard](res_img/digital-bill-highres.png "Storyboard")
+![Storyboard](../media/res_img/digital-bill-highres.png "Storyboard")
 
 ## Prototype
 
