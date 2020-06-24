@@ -141,7 +141,7 @@ class MainViewModel(
     /**
      * Get Bills, filtered by Date
      */
-    fun getBillsFilteredByDate(min: LocalDateTime, max: LocalDateTime) = uiScope.launch { getBillsFilteredByDateAsnyc(min, max)}
+    fun getBillsFilteredByDate(min: LocalDateTime, max: LocalDateTime) = uiScope.launch { getBillsFilteredByDateAsnyc(min, max) }
 
     private suspend fun getBillsFilteredByDateAsnyc(min: LocalDateTime, max: LocalDateTime) =
         withContext(Dispatchers.IO) {
@@ -156,7 +156,7 @@ class MainViewModel(
      */
     fun getBillsFilteredByPriceandDate(minPrice: Int, maxPrice: Int, minYear: Int, maxYear: Int) = uiScope.launch { getBillsFilteredByPriceandDateAsync(minPrice, maxPrice, minYear, maxYear) }
 
-    private suspend fun getBillsFilteredByPriceandDateAsync(minPrice: Int, maxPrice: Int, minYear:Int, maxYear:Int) =
+    private suspend fun getBillsFilteredByPriceandDateAsync(minPrice: Int, maxPrice: Int, minYear: Int, maxYear: Int) =
         withContext(Dispatchers.IO) {
             val bills = billDao.getBills().filter {
                 it.items.sumByDouble { it2 -> it2.price } >= minPrice &&  it.items.sumByDouble { it2 -> it2.price } <= maxPrice && it.header.dateTime.year in minYear..maxYear

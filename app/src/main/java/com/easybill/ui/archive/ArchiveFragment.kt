@@ -61,7 +61,6 @@ class ArchiveFragment : Fragment() {
         emptyArchiveTextView = root.findViewById(R.id.empty_view)
         timelineChart = root.findViewById(R.id.timeline_char)
 
-
         // setup RecyclerView
         val recyclerViewLayoutManager = LinearLayoutManager(context)
         val onScrollListener = object : RecyclerView.OnScrollListener() {
@@ -116,11 +115,8 @@ class ArchiveFragment : Fragment() {
         // initialize filter dialog
         initFilterDialog()
 
-
         return root
     }
-
-
 
     /*
      * Initializes the timeline-chart
@@ -234,8 +230,6 @@ class ArchiveFragment : Fragment() {
         }
 
         filterDialog = builder?.create()
-
-
     }
 
     /*
@@ -262,7 +256,7 @@ class ArchiveFragment : Fragment() {
                         filterDialog?.findViewById<EditText>(R.id.currentPriceMin)?.setText(rangePicker.getCurrentStartValue().toString(),
                             TextView.BufferType.EDITABLE)
                         filterDialog?.findViewById<EditText>(R.id.currentPriceMax)?.setText(rangePicker.getCurrentEndValue().toString(),
-                            TextView.BufferType.EDITABLE )
+                            TextView.BufferType.EDITABLE)
                     }
                     override fun onStartTrackingTouch(rangePicker: RubberRangePicker, isStartThumb: Boolean) {}
                     override fun onStopTrackingTouch(rangePicker: RubberRangePicker, isStartThumb: Boolean) {
@@ -271,7 +265,7 @@ class ArchiveFragment : Fragment() {
                 // set RubberRangePicker for date
                 val rubberRangePickerDate = filterDialog?.findViewById<RubberRangePicker>(R.id.dateRubberRangePicker)
                 rubberRangePickerDate?.setElasticBehavior(ElasticBehavior.CUBIC)
-                //set range
+                // set range
                 rubberRangePickerDate?.setMax(LocalDateTime.now().year)
                 rubberRangePickerDate?.setMin((LocalDateTime.now().year-5))
                 rubberRangePickerDate?.setCurrentEndValue(rubberRangePickerDate.getMax())
