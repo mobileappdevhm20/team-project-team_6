@@ -8,6 +8,8 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -259,11 +261,14 @@ class ArchiveFragment : Fragment() {
 
                 val rubberRangePicker = filterDialog?.findViewById<RubberRangePicker>(R.id.priceRubberRangePicker)
                 rubberRangePicker?.setElasticBehavior(ElasticBehavior.CUBIC)
-                rubberRangePicker?.setMax(900)
+                rubberRangePicker?.setMax(1000)
 
                 rubberRangePicker?.setOnRubberRangePickerChangeListener(object: RubberRangePicker.OnRubberRangePickerChangeListener{
                     override fun onProgressChanged(rangePicker: RubberRangePicker, startValue: Int, endValue: Int, fromUser: Boolean) {
-                        filterDialog?.findViewById<TextView>(R.id.currentPrice)?.text = rangePicker.getCurrentStartValue().toString() + " - " + rangePicker.getCurrentEndValue()
+                        filterDialog?.findViewById<EditText>(R.id.currentPriceMin)?.setText(rangePicker.getCurrentStartValue().toString(),
+                            TextView.BufferType.EDITABLE)
+                        filterDialog?.findViewById<EditText>(R.id.currentPriceMax)?.setText(rangePicker.getCurrentEndValue().toString(),
+                            TextView.BufferType.EDITABLE )
                     }
                     override fun onStartTrackingTouch(rangePicker: RubberRangePicker, isStartThumb: Boolean) {}
                     override fun onStopTrackingTouch(rangePicker: RubberRangePicker, isStartThumb: Boolean) {
@@ -274,9 +279,10 @@ class ArchiveFragment : Fragment() {
                 //set RubberRangePicker for date
                 val rubberRangePickerDate = filterDialog?.findViewById<RubberRangePicker>(R.id.dateRubberRangePicker)
                 rubberRangePickerDate?.setElasticBehavior(ElasticBehavior.CUBIC)
+                //set range
                 rubberRangePickerDate?.setMax(LocalDateTime.now().year)
-
-                rubberRangePickerDate?.setMin((LocalDateTime.now().year-20))
+                rubberRangePickerDate?.setMin((LocalDateTime.now().year-5))
+                rubberRangePickerDate?.setCurrentEndValue(rubberRangePickerDate.getMax())
 
                 rubberRangePickerDate?.setOnRubberRangePickerChangeListener(object: RubberRangePicker.OnRubberRangePickerChangeListener{
                     override fun onProgressChanged(rangePicker: RubberRangePicker, startValue: Int, endValue: Int, fromUser: Boolean) {
@@ -293,12 +299,23 @@ class ArchiveFragment : Fragment() {
                 filterDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
                 filterDialog?.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
 
+                // set onClicklistener to apply filters
                 filterDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setOnClickListener {
                     viewModel.getBillsFilteredByPriceandDate(
-                        rubberRangePicker?.getCurrentStartValue()!!,
-                        rubberRangePicker?.getCurrentEndValue()!!,
+                        Integer.parseInt(filterDialog?.findViewById<EditText>(R.id.currentPriceMin)?.text.toString()),
+                        Integer.parseInt(filterDialog?.findViewById<EditText>(R.id.currentPriceMax)?.text.toString()),
                         rubberRangePickerDate?.getCurrentStartValue()!!,
                     rubberRangePickerDate.getCurrentEndValue()!!)
+                    filterDialog?.dismiss()
+                }
+
+                //set onClickListener for resett
+                filterDialog?.findViewById<Button>(R.id.resetFilterButton)?.setOnClickListener{
+                    rubberRangePicker?.setCurrentStartValue(0)
+                    rubberRangePicker?.setCurrentEndValue(1000)
+                    rubberRangePickerDate?.setCurrentStartValue(LocalDateTime.now().year-5)
+                    rubberRangePicker?.setCurrentEndValue(LocalDateTime.now().year)
+                    viewModel.getBills()
                     filterDialog?.dismiss()
                 }
 
