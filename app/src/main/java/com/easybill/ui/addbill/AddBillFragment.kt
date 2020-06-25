@@ -29,6 +29,7 @@ import com.google.mlkit.vision.text.TextRecognizer
 import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.fragment_add.view.*
 import java.io.IOException
+import kotlin.math.absoluteValue
 
 
 /**
@@ -99,7 +100,7 @@ class AddBillFragment : Fragment() {
         scanButton.isEnabled = false
         confirmButton.isEnabled = false
         photoViewContainer.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.bill_picture_container_init))
-        photoView.setImageURI(null)
+        photoView.setImageBitmap(null)
     }
 
     private fun openCamera() {
@@ -147,9 +148,9 @@ class AddBillFragment : Fragment() {
             CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
                 val result = CropImage.getActivityResult(data)
                 if (resultCode == Activity.RESULT_OK) {
-                    photoView.setImageURI(result.uri)
+                    //photoView.setImageURI(result.uri)
                     imageBitmap = MediaStore.Images.Media.getBitmap(activity?.contentResolver, result.uri)
-                    //photoView.setImageBitmap(bitmap)
+                    photoView.setImageBitmap(imageBitmap)
                     try {
                         image = InputImage.fromFilePath(requireContext(), result.uri)
                         //imageBitmap = bitmap
@@ -182,23 +183,27 @@ class AddBillFragment : Fragment() {
         val headLine = "#".repeat(50)
         val subLine = "-".repeat(50)
 
-        var regexForTotal: MutableList<String> = mutableListOf(".*total.*", ".*sum.*", ".*summe.*")
-        var regexForAddress: MutableList<String> = mutableListOf(".*straße.*", ".*str.*", ".*street.*")
+        var regexForTotal: MutableList<Regex> = mutableListOf(Regex(".*total.*"), Regex(".*sum.*"), Regex(".*summe.*"))
+        var regexForAddress: MutableList<Regex> = mutableListOf(Regex(".*straße.*"), Regex(".*str.*"), Regex(".*street.*"))
 
-        val shopNameBlock = visionText.textBlocks[0]
-        var shopName: BillValueEntry = BillValueEntry(
-            text = shopNameBlock.lines[0].text,
-            textX = shopNameBlock.lines[0].boundingBox?.left!!.toFloat(),
-            textY = shopNameBlock.lines[0].boundingBox?.bottom!!.toFloat(),
-            textSize = shopNameBlock.lines[0].boundingBox?.bottom!!.toFloat() - shopNameBlock.lines[0].boundingBox?.top!!.toFloat(),
-            left = shopNameBlock.boundingBox?.left!!.toFloat(),
-            right = shopNameBlock.boundingBox?.right!!.toFloat(),
-            top = shopNameBlock.boundingBox?.top!!.toFloat(),
-            bottom = shopNameBlock.boundingBox?.bottom!!.toFloat()
-        )
+        var shopName: BillValueEntry? = null
 
-        var addressList: MutableList<BillValueEntry>
-        var totalMap: MutableMap<BillValueEntry, BillValueEntry>
+        if (visionText.textBlocks.size != 0) {
+            val shopNameBlock = visionText.textBlocks[0]
+            shopName = BillValueEntry(
+                text = shopNameBlock.lines[0].text,
+                textX = shopNameBlock.lines[0].boundingBox?.left!!.toFloat(),
+                textY = shopNameBlock.lines[0].boundingBox?.bottom!!.toFloat(),
+                textSize = shopNameBlock.lines[0].boundingBox?.bottom!!.toFloat() - shopNameBlock.lines[0].boundingBox?.top!!.toFloat(),
+                left = shopNameBlock.boundingBox?.left!!.toFloat(),
+                right = shopNameBlock.boundingBox?.right!!.toFloat(),
+                top = shopNameBlock.boundingBox?.top!!.toFloat(),
+                bottom = shopNameBlock.boundingBox?.bottom!!.toFloat()
+            )
+        }
+
+        var addressList: MutableList<BillValueEntry> = mutableListOf()
+        var totalList: MutableList<BillValueEntry> = mutableListOf()
         var otherEntries: MutableList<BillValueEntry> = mutableListOf()
 
         println(headLine)
@@ -215,7 +220,39 @@ class AddBillFragment : Fragment() {
             for (line in block.lines) {
                 val lineText = line.text
                 val lineFrame = line.boundingBox
-                // ----------
+                // check if line matches street regex
+                for (regex in regexForAddress) {
+                    if (lineText.toLowerCase().matches(regex)) {
+                        addressList.add(BillValueEntry(
+                            text = lineText,
+                            textX = lineFrame?.left!!.toFloat(),
+                            textY = lineFrame?.bottom!!.toFloat(),
+                            textSize = lineFrame?.bottom!!.toFloat() - lineFrame?.top!!.toFloat(),
+                            left = blockFrame?.left!!.toFloat(),
+                            right = blockFrame?.right!!.toFloat(),
+                            top = blockFrame?.top!!.toFloat(),
+                            bottom = blockFrame?.bottom!!.toFloat()
+                        ))
+                        break
+                    }
+                }
+                // check if line matches total regex
+                for (regex in regexForTotal) {
+                    if (lineText.toLowerCase().matches(regex)) {
+                        totalList.add(BillValueEntry(
+                            text = lineText,
+                            textX = lineFrame?.left!!.toFloat(),
+                            textY = lineFrame?.bottom!!.toFloat(),
+                            textSize = lineFrame?.bottom!!.toFloat() - lineFrame?.top!!.toFloat(),
+                            left = blockFrame?.left!!.toFloat(),
+                            right = blockFrame?.right!!.toFloat(),
+                            top = blockFrame?.top!!.toFloat(),
+                            bottom = blockFrame?.bottom!!.toFloat()
+                        ))
+                        break
+                    }
+                }
+                // add to other if does not match anything
                 otherEntries.add(BillValueEntry(
                     text = lineText,
                     textX = lineFrame?.left!!.toFloat(),
@@ -230,8 +267,38 @@ class AddBillFragment : Fragment() {
             }
         }
 
+        // check if total list is not empty and try to find a fitting price
+        var totalLable: BillValueEntry? = null
+        var totalPrice: BillValueEntry? = null
+        var found: Boolean = false
+        if (totalList.size != 0) {
+            println("<<<<<<<<<< ${totalList.size} >>>>>>>>>>")
+            for (totalEntry in totalList) {
+                for (otherEntry in otherEntries) {
+                    // if the text is on the same height, try convert to number
+                    if ((otherEntry.textY - totalEntry.textY).absoluteValue < 20f) {
+                        println("<<<<<<<<<< IS SMALLER: (${totalEntry.text}, ${otherEntry.text}) >>>>>>>>>>")
+                        try {
+                            otherEntry.text.replace(",", ".", false).toDouble()
+                            totalLable = totalEntry
+                            totalPrice = otherEntry
+                            found = true
+                        } catch (e: NumberFormatException) {
+                            println("<<<<<<<<<< FAILED!!! >>>>>>>>>>")
+                            // ignore
+                        }
+                    }
+                    if (found) { break }
+                }
+                if (found) { break }
+            }
+        }
+
         println(headLine)
-        drawBillContentToPicture(shopName, null, null, null, otherEntries)
+        var address: BillValueEntry? = null
+        if (addressList.size != 0) { address = addressList[0] }
+
+        drawBillContentToPicture(shopName, address, totalLable, totalPrice, otherEntries)
     }
 
     private fun drawBillContentToPicture(
@@ -246,10 +313,10 @@ class AddBillFragment : Fragment() {
 
         billCanvas.drawBitmap(imageBitmap, 0f, 0f, null)
 
-        val shopNameColor = ResourcesCompat.getColor(resources, R.color.colorGreenSuccess, null)
-        val addressColor = ResourcesCompat.getColor(resources, R.color.colorRedFail, null)
-        val totalColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, null)
-        val otherColor = ResourcesCompat.getColor(resources, R.color.colorLightGrey, null)
+        val shopNameColor = ResourcesCompat.getColor(resources, R.color.colorShopName, null)
+        val addressColor = ResourcesCompat.getColor(resources, R.color.colorAddress, null)
+        val totalColor = ResourcesCompat.getColor(resources, R.color.colorTotal, null)
+        val otherColor = ResourcesCompat.getColor(resources, R.color.colorOther, null)
 
         val paint = Paint().apply {
             // Smooths out edges of what is drawn without affecting shape.
