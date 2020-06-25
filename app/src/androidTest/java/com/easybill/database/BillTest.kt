@@ -1,11 +1,10 @@
 package com.easybill.database
 
 import android.content.Context
-import android.provider.ContactsContract
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.easybill.data.*
+import com.easybill.data.Database
 import com.easybill.data.dao.BillDao
 import com.easybill.data.dao.BillHeaderDao
 import com.easybill.data.dao.BillItemDao
@@ -30,7 +29,8 @@ class BillTest {
     fun createDb() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         db = Room.inMemoryDatabaseBuilder(
-            context, Database::class.java).build()
+            context, Database::class.java
+        ).build()
         headDao = db.getBillHeaderDao()
         itemDao = db.getBillItemDao()
         billDao = db.getBillDao()
@@ -41,7 +41,6 @@ class BillTest {
     fun closeDb() {
         db.close()
     }
-
 
     @Test
     @Throws(Exception::class)
@@ -118,6 +117,6 @@ class BillTest {
 
         // get bill with items, should now have numItems-1 items
         actual = billDao.getBillById(head.headerId)
-        assertThat(actual.items.size, equalTo(numItems-1))
+        assertThat(actual.items.size, equalTo(numItems - 1))
     }
 }

@@ -4,9 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.easybill.data.*
+import com.easybill.data.Database
 import com.easybill.data.dao.BillHeaderDao
-import com.easybill.data.dao.BillHeaderDao_Impl
 import com.easybill.data.model.BillHeader
 import org.hamcrest.CoreMatchers.*
 import org.junit.After
@@ -25,7 +24,8 @@ class HeadTest {
     fun createDb() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         db = Room.inMemoryDatabaseBuilder(
-            context, Database::class.java).build()
+            context, Database::class.java
+        ).build()
         headDao = db.getBillHeaderDao()
     }
 

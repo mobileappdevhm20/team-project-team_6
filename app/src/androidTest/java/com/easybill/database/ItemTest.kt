@@ -1,12 +1,11 @@
 package com.easybill.database
 
 import android.content.Context
-import androidx.room.Database
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.easybill.data.dao.BillItemDao
 import com.easybill.data.*
+import com.easybill.data.dao.BillItemDao
 import com.easybill.data.model.BillItem
 import org.hamcrest.CoreMatchers.*
 import org.junit.After
@@ -25,7 +24,8 @@ class ItemTest {
     fun createDb() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         db = Room.inMemoryDatabaseBuilder(
-            context, com.easybill.data.Database::class.java).build()
+            context, com.easybill.data.Database::class.java
+        ).build()
         itemDao = db.getBillItemDao()
     }
 
@@ -52,11 +52,10 @@ class ItemTest {
             val actual = itemDao.getById(item.itemId)
 
             // verify results
-
             // TODO: Fix Item tests
-           // assertThat(actual.name, equalTo(item.name))
-           // assertThat(actual.amount, equalTo(item.amount))
-           // assertThat(actual.price, equalTo(item.price))
+            // assertThat(actual.name, equalTo(item.name))
+            // assertThat(actual.amount, equalTo(item.amount))
+            // assertThat(actual.price, equalTo(item.price))
         }
 
         // get all items
