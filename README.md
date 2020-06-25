@@ -130,11 +130,10 @@ Up next for Sprint 2: Cleanup, polishing of UI, OCR, statistics, filter..
 * feature/order bills new ui -> develop ([#66][p66]) 
 
 [p43]: https://github.com/mobileappdevhm20/team-project-team_6/pull/43
-[p22]: https://github.com/mobileappdevhm20/team-project-team_6/pull/44
+[p44]: https://github.com/mobileappdevhm20/team-project-team_6/pull/44
 [p62]: https://github.com/mobileappdevhm20/team-project-team_6/pull/62
 [p65]: https://github.com/mobileappdevhm20/team-project-team_6/pull/65
 [p66]: https://github.com/mobileappdevhm20/team-project-team_6/pull/66
-[p31]: https://github.com/mobileappdevhm20/team-project-team_6/pull/31
 
 ### Conclusion
 
