@@ -4,10 +4,11 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.easybill.data.*
 import com.easybill.data.dao.BillItemDao
 import com.easybill.data.model.BillItem
-import org.hamcrest.CoreMatchers.*
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.CoreMatchers.nullValue
 import org.junit.After
 import org.junit.Assert.assertThat
 import org.junit.Before
@@ -70,7 +71,7 @@ class ItemTest {
         val item = BillItem()
         item.name = "TestName"
         item.amount = 1.0
-        item.price  = 1.0
+        item.price = 1.0
 
         // insert the item
         item.itemId = itemDao.insert(item)

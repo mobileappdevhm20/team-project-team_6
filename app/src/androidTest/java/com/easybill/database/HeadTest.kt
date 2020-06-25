@@ -7,7 +7,9 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.easybill.data.Database
 import com.easybill.data.dao.BillHeaderDao
 import com.easybill.data.model.BillHeader
-import org.hamcrest.CoreMatchers.*
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.CoreMatchers.nullValue
 import org.junit.After
 import org.junit.Assert.assertThat
 import org.junit.Before
