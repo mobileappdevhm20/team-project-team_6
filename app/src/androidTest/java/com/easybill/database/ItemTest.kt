@@ -85,7 +85,7 @@ class ItemTest {
         // get the updated item and verify
         val actual = itemDao.getById(item.itemId)
 
-        // TODO: Fix Item tests
+        // TODO: Fix Item tests not working
         // assertThat(actual.name, equalTo(item.name))
         // assertThat(actual.amount, equalTo(item.amount))
         // assertThat(actual.price, equalTo(item.price))
