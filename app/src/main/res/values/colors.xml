@@ -13,4 +13,5 @@
     <color name="colorAddress">#7910E1</color>
     <color name="colorTotal">#FF0000</color>
     <color name="colorOther">#8F8F8F</color>
+    <color name="colorScanBackground">#FFFFFF</color>
 </resources>
