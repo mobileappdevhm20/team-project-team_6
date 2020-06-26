@@ -1,5 +1,6 @@
 # 	:receipt: :euro:	 __EasyBill__ 	 :euro:	 :receipt:
-![Build Passing Badge](https://api.travis-ci.com/mobileappdevhm20/team-project-team_6.svg?branch=develop)
+[![codecov](https://codecov.io/gh/mobileappdevhm20/team-project-team_6/branch/develop/graph/badge.svg)](https://codecov.io/gh/mobileappdevhm20/team-project-team_6)
+[![License](https://img.shields.io/github/license/mobileappdevhm20/team-project-team_6)](/LICENSE)
 
 ## EasyBill is the free and open-source app for managing all your bills.
 
@@ -90,3 +91,63 @@ __[Click me for the demo!](https://www.figma.com/file/U0r2xmu9Fyja9gI72Z8CTx/Eas
 	     mock data
 	     
 Up next for Sprint 2: Cleanup, polishing of UI, OCR, statistics, filter..
+
+## Sprint 2 - Overview
+
+### Issues 
+
+* Take a picture of a bill ([#1][i1]) 
+* Saved a parsed bill ([#2][i2]) 
+* Apply filters ([#5][i5]) 
+* Apply ordering to the archived bills ([#6][i6]) 
+* See statistics ([#7][i7]) 
+* Integrate OCR into the App ([#10][i10]) 
+* Apply OCR to the picture of a bill ([#13][i13]) 
+* Research OCR ([#38][i38]) 
+* Add quality/-branches to pipline ([#48][i48]) 
+
+[i1]: https://github.com/mobileappdevhm20/team-project-team_6/issues/1
+[i2]: https://github.com/mobileappdevhm20/team-project-team_6/issues/2
+[i5]: https://github.com/mobileappdevhm20/team-project-team_6/issues/5
+[i6]: https://github.com/mobileappdevhm20/team-project-team_6/issues/6
+[i7]: https://github.com/mobileappdevhm20/team-project-team_6/issues/7
+[i10]: https://github.com/mobileappdevhm20/team-project-team_6/issues/10
+[i13]: https://github.com/mobileappdevhm20/team-project-team_6/issues/13
+[i38]: https://github.com/mobileappdevhm20/team-project-team_6/issues/38
+[i48]: https://github.com/mobileappdevhm20/team-project-team_6/issues/48
+
+### Bugs
+
+[Click here to see all bugs we fixed](https://github.com/mobileappdevhm20/team-project-team_6/issues?q=is%3Aissue+label%3Abug)
+
+
+### Important pull requests
+
+* feature/designAndOrientation -> develop ([#43][p43]) 
+* pipeline/tests -> develop ([#44][p44]) 
+* quality/ui revamp -> develop ([#62][p62]) 
+* feature/take photo -> develop ([#65][p65]) 
+* feature/order bills new ui -> develop ([#66][p66]) 
+
+[p43]: https://github.com/mobileappdevhm20/team-project-team_6/pull/43
+[p44]: https://github.com/mobileappdevhm20/team-project-team_6/pull/44
+[p62]: https://github.com/mobileappdevhm20/team-project-team_6/pull/62
+[p65]: https://github.com/mobileappdevhm20/team-project-team_6/pull/65
+[p66]: https://github.com/mobileappdevhm20/team-project-team_6/pull/66
+
+### Conclusion
+
+1. Started with a sprint backlog of 16 Issues
+2. Different components contributed by different team-members
+	2.1. Significant overhead in merging/keeping everything in sync
+3. Rewrote the whole app UI because, the prototype of Sprint 1 wasn't sustainable enough.
+4. Focus was on implementing statistics and picture taking capabilties (with OCR)
+5. There are Unit-tests for the database module
+6. The development pipeline is done with travis-ci and integrated into
+   github, enforces sane coding-standards and code-quality through 
+   linter-plugin. Codecoverage gets checked by codecov
+7. Work was done in git-flwo, before merging features/improvements back
+   in a review was needed
+
+	     
+
