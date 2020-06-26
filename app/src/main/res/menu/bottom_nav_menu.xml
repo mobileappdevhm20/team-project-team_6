@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/billArchiveGraph"
+        android:icon="@drawable/ic_receipt_long_24px"
+        android:title="@string/bottom_menu_title_bills" />
+
+    <item
+        android:id="@+id/bottom_menu_statistics"
+        android:icon="@drawable/ic_bar_chart_24px"
+        android:title="@string/bottom_menu_title_statistics" />
+
+    <item
+        android:id="@+id/bottom_menu_add"
+        android:icon="@drawable/ic_add_24px"
+        android:title="@string/bottom_menu_title_add" />
+
+</menu>

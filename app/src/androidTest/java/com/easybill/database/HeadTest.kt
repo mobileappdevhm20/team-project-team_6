@@ -4,9 +4,12 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.easybill.database.dao.HeadDao
-import com.easybill.database.model.Head
-import org.hamcrest.CoreMatchers.*
+import com.easybill.data.Database
+import com.easybill.data.dao.BillHeaderDao
+import com.easybill.data.model.BillHeader
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.CoreMatchers.nullValue
 import org.junit.After
 import org.junit.Assert.assertThat
 import org.junit.Before
@@ -16,15 +19,16 @@ import java.io.IOException
 
 @RunWith(AndroidJUnit4::class)
 class HeadTest {
-    private lateinit var headDao: HeadDao
-    private lateinit var db: EasyBillDatabase
+    private lateinit var headDao: BillHeaderDao
+    private lateinit var db: Database
 
     @Before
     fun createDb() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         db = Room.inMemoryDatabaseBuilder(
-            context, EasyBillDatabase::class.java).build()
-        headDao = db.getHeadDao()
+            context, Database::class.java
+        ).build()
+        headDao = db.getBillHeaderDao()
     }
 
     @After
@@ -40,17 +44,17 @@ class HeadTest {
 
         for (i in 1..numHeads) {
             // create a new head with test-data
-            val head = Head()
+            val head = BillHeader()
             head.address = "TestAddress#$i"
-            head.storeName = "StoreName#$i"
+            head.companyName = "StoreName#$i"
 
             // insert the head and get it
-            head.id = headDao.insert(head)
-            val actual = headDao.getById(head.id)
+            head.headerId = headDao.insert(head)
+            val actual = headDao.getById(head.headerId)
 
             // verify results
             assertThat(actual.address, equalTo(head.address))
-            assertThat(actual.storeName, equalTo(head.storeName))
+            assertThat(actual.companyName, equalTo(head.companyName))
         }
 
         // get all bills
@@ -62,40 +66,40 @@ class HeadTest {
     @Throws(Exception::class)
     fun insertAndUpdateHead() {
         // create a new head with test-data
-        val head = Head()
+        val head = BillHeader()
         head.address = "TestAddress"
-        head.storeName = "StoreName"
+        head.companyName = "StoreName"
 
         // insert the head
-        head.id = headDao.insert(head)
+        head.headerId = headDao.insert(head)
 
         // now change the head and update it
         head.address = "NewTestAddress"
-        head.storeName = "NewStoreName"
+        head.companyName = "NewStoreName"
         headDao.update(head)
 
         // get the updated head and verify
-        val actual = headDao.getById(head.id)
+        val actual = headDao.getById(head.headerId)
         assertThat(actual.address, equalTo(head.address))
-        assertThat(actual.storeName, equalTo(head.storeName))
+        assertThat(actual.companyName, equalTo(head.companyName))
     }
 
     @Test
     @Throws(Exception::class)
     fun insertAndDeleteHead() {
         // create a new head with test-data
-        val head = Head()
+        val head = BillHeader()
         head.address = "TestAddress"
-        head.storeName = "StoreName"
+        head.companyName = "StoreName"
 
         // insert the bill
-        head.id = headDao.insert(head)
+        head.headerId = headDao.insert(head)
 
         // delete the bill
         headDao.delete(head)
 
         // the bill should now be deleted and null must be returned
-        val actual = headDao.getById(head.id)
+        val actual = headDao.getById(head.headerId)
         assertThat(actual, `is`(nullValue()))
     }
 }

@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#4BB8F5</color>
-    <color name="colorPrimaryDark">#0081CA</color>
+    <color name="colorPrimary">#1976d2</color>
+    <color name="colorPrimaryDark">#004ba0</color>
+    <color name="colorPrimaryLight">#63a4ff</color>
     <color name="colorAccent">#03DAC5</color>
-    <!-- Own Colors defined. -->
-    <color name="colorBackground">#E5E5E5</color>
-    <color name="colorFontWhite">#FFFFFF</color>
-    <color name="colorFontBlack">#000000</color>
-    <color name="colorBackgroundFloatingButton">#4BB8F5</color>
-    <color name="colorShadow">#e6e6ea</color>
+    <color name="colorText">#FFFFFF</color>
+    <color name="colorLightGrey">#FF778899</color>
+    <color name="colorLightGreyTransparent">#50778899</color>
+    <color name="colorGreenSuccess">#25FB00</color>
+    <color name="colorRedFail">#FF0000</color>
+    <color name="colorShopName">#2175F3</color>
+    <color name="colorAddress">#7910E1</color>
+    <color name="colorTotal">#FF0000</color>
+    <color name="colorOther">#8F8F8F</color>
+    <color name="colorScanBackground">#FFFFFF</color>
 </resources>

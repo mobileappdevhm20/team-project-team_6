@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_filter_by_price" />
+
+    <com.jem.rubberpicker.RubberRangePicker
+        android:id="@+id/priceRubberRangePicker"
+        android:layout_width="324dp"
+        android:layout_height="106dp"
+        android:layout_marginTop="12dp"
+        app:elasticBehavior="rigid"
+        app:maxValue="100"
+        app:minValue="0" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+    <EditText
+        android:id="@+id/currentPriceMin"
+        android:layout_width="154dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:inputType="number"
+        android:text="0" />
+
+    <EditText
+        android:id="@+id/currentPriceMax"
+        android:layout_width="154dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:gravity="center"
+        android:text="0" />
+    </LinearLayout>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_filter_by_time" />
+
+    <com.jem.rubberpicker.RubberRangePicker
+        android:id="@+id/dateRubberRangePicker"
+        android:layout_width="325dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="12dp"
+        app:elasticBehavior="rigid"
+        app:maxValue="100"
+        app:minValue="0" />
+
+    <TextView
+        android:id="@+id/currentDate"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0" />
+
+    <Button
+        android:id="@+id/resetFilterButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reset Filter" />
+
+</LinearLayout>
