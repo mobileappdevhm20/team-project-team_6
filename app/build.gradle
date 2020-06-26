@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.easybill"
-        minSdkVersion 26
+        minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -92,6 +92,10 @@ dependencies {
 
     // Android Image Cropper
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+
+    // OCR
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition:16.0.0'
+    implementation 'androidx.camera:camera-camera2:1.0.0-alpha07'
 }
 
 // Add task for linting

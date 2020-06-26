@@ -28,37 +28,37 @@
         android:id="@+id/camera_button"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:text="Camera"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintVertical_bias="0.3"
+        android:text="Picture"
+        android:layout_marginRight="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/photo_view_container"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/photo_view_container" />
+        app:layout_constraintEnd_toStartOf="@+id/scan_button"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.3" />
 
     <Button
         android:id="@+id/scan_button"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:text="Scan"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintTop_toBottomOf="@+id/photo_view_container"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/photo_view_container" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.3"/>
 
     <Button
         android:id="@+id/confirm_button"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:text="Confirm"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintVertical_bias="0.3"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/photo_view_container"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/photo_view_container" />
+        app:layout_constraintStart_toEndOf="@+id/scan_button"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintVertical_bias="0.3" />
 
     <Button
         android:id="@+id/generate_random_bills"

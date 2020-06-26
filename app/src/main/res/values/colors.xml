@@ -9,4 +9,9 @@
     <color name="colorLightGreyTransparent">#50778899</color>
     <color name="colorGreenSuccess">#25FB00</color>
     <color name="colorRedFail">#FF0000</color>
+    <color name="colorShopName">#2175F3</color>
+    <color name="colorAddress">#7910E1</color>
+    <color name="colorTotal">#FF0000</color>
+    <color name="colorOther">#8F8F8F</color>
+    <color name="colorScanBackground">#FFFFFF</color>
 </resources>
