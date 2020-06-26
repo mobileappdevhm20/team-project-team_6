@@ -23,6 +23,7 @@ import com.easybill.MainViewModel
 import com.easybill.R
 import com.easybill.data.model.Bill
 import com.easybill.data.model.BillHeader
+import com.easybill.data.model.BillItem
 import com.easybill.misc.generateFakeBills
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
@@ -36,14 +37,13 @@ import java.time.LocalDateTime
 import java.util.*
 import kotlin.math.absoluteValue
 
-
 /**
  * Uses the Android-Image-Cropper library to take a picture and crop it
  * Source: https://github.com/ArthurHub/Android-Image-Cropper
  * Uses the ML Kit to process a picture of a bill
  * Source: https://developers.google.com/ml-kit/vision/text-recognition/android#top_of_page
  */
-class AddBillFragment : Fragment() {
+class AddBillFragment : Fragment () {
 
     private lateinit var viewModel: MainViewModel
 
@@ -226,12 +226,12 @@ class AddBillFragment : Fragment() {
 
     private fun processBillText(visionText: Text) {
 
-        val regexForTotal: MutableList<Regex> = mutableListOf(Regex(".*total.*"), Regex(".*sum.*"), Regex(".*summe.*"))
+        val regexForTotal: MutableList<Regex> = mutableListOf(Regex(".*total.*"), Regex(".*sum.*"), Regex(".*summe.*"), Regex(".*eur.*"))
         val regexForAddress: MutableList<Regex> = mutableListOf(Regex(".*straße.*"), Regex(".*str.*"), Regex(".*street.*"))
 
         var shopName = ""
         var address = ""
-        var totalPrice = -1f
+        var totalPrice = -1.0
 
         var shopNameEntry: BillValueEntry? = null
 
@@ -325,9 +325,9 @@ class AddBillFragment : Fragment() {
             for (totalEntry in totalList) {
                 for (otherEntry in otherEntries) {
                     // if the text is on the same height, try convert to number
-                    if ((otherEntry.textY - totalEntry.textY).absoluteValue < 20f) {
+                    if ((otherEntry.textY - totalEntry.textY).absoluteValue < 10f) {
                         try {
-                            totalPrice = otherEntry.text.replace(",", ".", false).toDouble().toFloat()
+                            totalPrice = otherEntry.text.replace(",", ".", false).toDouble()
                             totalLabelEntry = totalEntry
                             totalPriceEntry = otherEntry
                             found = true
@@ -360,8 +360,19 @@ class AddBillFragment : Fragment() {
         }
     }
 
-    private fun createNewBill(shopName: String, address: String, totalPrice: Float) {
-        // TODO create new bill (API level 26 required)
+    private fun createNewBill(shopName: String, address: String, totalPrice: Double) {
+        newBill = Bill(
+            header = BillHeader(
+                companyName = shopName,
+                address = address,
+                dateTime = LocalDateTime.now()
+            ),
+            items = listOf(BillItem(
+                name = "unknown",
+                amount = 1.0,
+                price = totalPrice
+            ))
+        )
     }
 
     private fun drawBillContentToPicture(
@@ -374,7 +385,7 @@ class AddBillFragment : Fragment() {
         var bitmap: Bitmap = Bitmap.createBitmap(imageBitmap.width,imageBitmap.height, Bitmap.Config.RGB_565)
         val billCanvas = Canvas(bitmap)
 
-        //billCanvas.drawBitmap(imageBitmap, 0f, 0f, null)
+        // billCanvas.drawBitmap(imageBitmap, 0f, 0f, null)
 
         val shopNameColor = ResourcesCompat.getColor(resources, R.color.colorShopName, null)
         val addressColor = ResourcesCompat.getColor(resources, R.color.colorAddress, null)
