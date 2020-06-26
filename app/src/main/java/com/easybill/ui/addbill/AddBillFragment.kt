@@ -390,7 +390,7 @@ class AddBillFragment : Fragment() {
             style = Paint.Style.STROKE // default: FILL
             strokeJoin = Paint.Join.ROUND // default: MITER
             strokeCap = Paint.Cap.ROUND // default: BUTT
-            strokeWidth = 5f // default: Hairline-width (really thin)
+            strokeWidth = 3f // default: Hairline-width (really thin)
         }
 
         // draw the background
