@@ -109,9 +109,12 @@ class AddBillFragment : Fragment() {
     private fun setInitialViewState() {
         scanButton.isEnabled = false
         confirmButton.isEnabled = false
-        photoViewContainer.setBackground( ContextCompat.getDrawable(
-            requireContext(),
-            R.drawable.bill_picture_container_init ) )
+        photoViewContainer.setBackground(
+            ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.bill_picture_container_init
+            )
+        )
         photoView.setImageBitmap(null)
     }
 
@@ -120,9 +123,12 @@ class AddBillFragment : Fragment() {
      * when taking and cropping a picture was successful.
      */
     private fun setPictureReadyViewState() {
-        photoViewContainer.setBackground( ContextCompat.getDrawable(
-            requireContext(),
-            R.drawable.bill_picture_container ) )
+        photoViewContainer.setBackground(
+            ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.bill_picture_container
+            )
+        )
         scanButton.isEnabled = true
     }
 
@@ -130,9 +136,12 @@ class AddBillFragment : Fragment() {
      * Set the views in the fragment to the success state if the ocr scan was successful
      */
     private fun setSuccessViewState() {
-        photoViewContainer.setBackground( ContextCompat.getDrawable(
-            requireContext(),
-            R.drawable.bill_picture_container_success ) )
+        photoViewContainer.setBackground(
+            ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.bill_picture_container_success
+            )
+        )
         scanButton.isEnabled = false
         confirmButton.isEnabled = true
     }
@@ -141,9 +150,12 @@ class AddBillFragment : Fragment() {
      * Set the views in the fragment to the filed state if the ocr scan failed
      */
     private fun setFailedViewState() {
-        photoViewContainer.setBackground( ContextCompat.getDrawable(
-            requireContext(),
-            R.drawable.bill_picture_container_fail) )
+        photoViewContainer.setBackground(
+            ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.bill_picture_container_fail
+            )
+        )
         scanButton.isEnabled = false
     }
 
@@ -222,7 +234,8 @@ class AddBillFragment : Fragment() {
         var left: Float,
         val top: Float,
         val right: Float,
-        val bottom: Float )
+        val bottom: Float
+    )
 
     private fun processBillText(visionText: Text) {
 
@@ -273,46 +286,52 @@ class AddBillFragment : Fragment() {
                 // check if line matches street regex
                 for (regex in regexForAddress) {
                     if (lineText.toLowerCase(Locale.ROOT).matches(regex)) {
-                        addressList.add( BillValueEntry(
-                            text = lineText,
-                            textX = lineFrame?.left!!.toFloat(),
-                            textY = lineFrame.bottom.toFloat(),
-                            textSize = lineFrame.bottom.toFloat() - lineFrame.top.toFloat(),
-                            left = blockFrame?.left!!.toFloat(),
-                            right = blockFrame.right.toFloat(),
-                            top = blockFrame.top.toFloat(),
-                            bottom = blockFrame.bottom.toFloat()
-                        ) )
+                        addressList.add(
+                            BillValueEntry(
+                                text = lineText,
+                                textX = lineFrame?.left!!.toFloat(),
+                                textY = lineFrame.bottom.toFloat(),
+                                textSize = lineFrame.bottom.toFloat() - lineFrame.top.toFloat(),
+                                left = blockFrame?.left!!.toFloat(),
+                                right = blockFrame.right.toFloat(),
+                                top = blockFrame.top.toFloat(),
+                                bottom = blockFrame.bottom.toFloat()
+                            )
+                        )
                         break
                     }
                 }
                 // check if line matches total regex
                 for (regex in regexForTotal) {
                     if (lineText.toLowerCase(Locale.ROOT).matches(regex)) {
-                        totalList.add( BillValueEntry(
-                            text = lineText,
-                            textX = lineFrame?.left!!.toFloat(),
-                            textY = lineFrame.bottom.toFloat(),
-                            textSize = lineFrame.bottom.toFloat() - lineFrame.top.toFloat(),
-                            left = blockFrame?.left!!.toFloat(),
-                            right = blockFrame.right.toFloat(),
-                            top = blockFrame.top.toFloat(),
-                            bottom = blockFrame.bottom.toFloat()
-                        ) )
+                        totalList.add(
+                            BillValueEntry(
+                                text = lineText,
+                                textX = lineFrame?.left!!.toFloat(),
+                                textY = lineFrame.bottom.toFloat(),
+                                textSize = lineFrame.bottom.toFloat() - lineFrame.top.toFloat(),
+                                left = blockFrame?.left!!.toFloat(),
+                                right = blockFrame.right.toFloat(),
+                                top = blockFrame.top.toFloat(),
+                                bottom = blockFrame.bottom.toFloat()
+                            )
+                        )
                         break
                     }
                 }
                 // add to other if does not match anything
-                otherEntries.add( BillValueEntry(
-                    text = lineText,
-                    textX = lineFrame?.left!!.toFloat(),
-                    textY = lineFrame.bottom.toFloat(),
-                    textSize = lineFrame.bottom.toFloat() - lineFrame.top.toFloat(),
-                    left = blockFrame?.left!!.toFloat(),
-                    top = blockFrame.top.toFloat(),
-                    right = blockFrame.right.toFloat(),
-                    bottom = blockFrame.bottom.toFloat()
-                ) )
+                otherEntries.add(
+                    BillValueEntry(
+                        text = lineText,
+                        textX = lineFrame?.left!!.toFloat(),
+                        textY = lineFrame.bottom.toFloat(),
+                        textSize = lineFrame.bottom.toFloat() - lineFrame.top.toFloat(),
+                        left = blockFrame?.left!!.toFloat(),
+                        top = blockFrame.top.toFloat(),
+                        right = blockFrame.right.toFloat(),
+                        bottom = blockFrame.bottom.toFloat()
+                    )
+                )
             }
         }
 
@@ -366,11 +385,13 @@ class AddBillFragment : Fragment() {
                 address = address,
                 dateTime = LocalDateTime.now()
             ),
-            items = listOf( BillItem(
-                name = "unknown",
-                amount = 1.0,
-                price = totalPrice
-            ) )
+            items = listOf(
+                BillItem(
+                    name = "unknown",
+                    amount = 1.0,
+                    price = totalPrice
+                )
+            )
         )
     }
 
@@ -379,7 +400,8 @@ class AddBillFragment : Fragment() {
         address: BillValueEntry?,
         total: BillValueEntry?,
         totalValue: BillValueEntry?,
-        other: MutableList<BillValueEntry>? ) {
+        other: MutableList<BillValueEntry>?
+    ) {
         var bitmap: Bitmap = Bitmap.createBitmap(imageBitmap.width, imageBitmap.height, Bitmap.Config.RGB_565)
         val billCanvas = Canvas(bitmap)
 
