@@ -71,7 +71,6 @@ class AddBillFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_add, container, false)
 
-        /*
         val deleteButton: Button = root.findViewById(R.id.delete_all_bills)
         deleteButton.setOnClickListener {
             val bills = viewModel.bills.value
@@ -86,7 +85,6 @@ class AddBillFragment : Fragment() {
             for (bill in bills)
                 viewModel.addBill(bill)
         }
-        */
 
         val cameraButton: Button = root.findViewById(R.id.camera_button)
         cameraButton.setOnClickListener { openCamera() }
