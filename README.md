@@ -94,6 +94,11 @@ Up next for Sprint 2: Cleanup, polishing of UI, OCR, statistics, filter..
 
 ## Sprint 2 - Overview
 
+### UI
+You can find a small demo video of the current state of the application here:
+
+[Demo-Video](https://github.com/mobileappdevhm20/team-project-team_6/blob/media/res_img/demo.m4v)
+
 ### Issues 
 
 * Take a picture of a bill ([#1][i1]) 
