@@ -1,23 +1,41 @@
+![Banner](https://github.com/mobileappdevhm20/team-project-team_6/blob/media/res_img/EaysbillFeatureGraphic_banner.png)
+
 # 	:receipt: :euro:	 __EasyBill__ 	 :euro:	 :receipt:
 [![codecov](https://codecov.io/gh/mobileappdevhm20/team-project-team_6/branch/develop/graph/badge.svg)](https://codecov.io/gh/mobileappdevhm20/team-project-team_6)
-[![License](https://img.shields.io/github/license/mobileappdevhm20/team-project-team_6)](/LICENSE)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## EasyBill is the free and open-source app for managing all your bills.
 
 EasyBill helps you digitize, catalog and filter your bills and thus is the next step towards a more digitized world. It uses optical character recognition to translate images of your bills into a digital format. This helps you to have a better overview on your spendings.
 
-## Story Board
+## Content
+- [Story Board](#story-board)
+- [Prototype](#prototype)
+  * [Screenshots of our Prototype](#screenshots-of-our-prototype)
+- [Sprint 1 - Overview](#sprint-1---overview)
+  * [Issues](#issues)
+  * [Important pull requests](#important-pull-requests)
+  * [Conclusion](#conclusion)
+- [Sprint 2 - Overview](#sprint-2---overview)
+  * [UI](#ui)
+  * [Issues](#issues-1)
+  * [Bugs](#bugs)
+  * [Important pull requests](#important-pull-requests-1)
+  * [Conclusion](#conclusion-1)
 
-We created our storyboard in StoryboardThat.
-![Storyboard](../media/res_img/digital-bill-highres.png "Storyboard")
+## Storyboard
+
+We used [StoryboardThat](https://www.storyboardthat.com/) to create a storyboard for our app:
+
+![Storyboard](https://github.com/mobileappdevhm20/team-project-team_6/blob/media/res_img/digital-bill-highres.png "Storyboard")
 
 ## Prototype
 
-We designed our prototype in Figma, which provides a full working demo in an emulator.
+Our prototype was designed with [Figma](https://www.figma.com/). It provides an emulated fully working demo.
 
 __[Click me for the demo!](https://www.figma.com/file/U0r2xmu9Fyja9gI72Z8CTx/EasyBill)__
 
-### Screenshots of our Prototype
+### Screenshots of the prototype
 <div class="row">
 <img src="https://github.com/mobileappdevhm20/team-project-team_6/blob/media/res_img/1.PNG" alt="drawing" width="160" height="330"/>
 <img src="https://github.com/mobileappdevhm20/team-project-team_6/blob/media/res_img/2.PNG" alt="drawing" width="160" height="330"/>
@@ -70,13 +88,13 @@ __[Click me for the demo!](https://www.figma.com/file/U0r2xmu9Fyja9gI72Z8CTx/Eas
 
 ### Conclusion
 
-1. Started with a sprint backlog of 11 Tasks
+1. The sprint started with a backlog of 11 tasks
 2. Different components contributed by different team-members
 	2.1. Significant overhead in merging/keeping everything in sync
-3. Implementation has two Entities, three DAOs, a converter-class
-   and a Database-Singleton
-4. Implementation constists of five fragments, one of them, the archive,
-   uses a RecyclerView with an Adapter that's bound to the applications
+3. The implementation has two entities, three DAOs, a converter-class
+   and a singleton for the database
+4. The implementation constists of five fragments, one of them, the archive,
+   uses a RecyclerView with an Adapter that is bound to the applications
    ViewModel
 5. The applications ViewModel offers asynchronous (e.g. non-blocking) 
    access to the database and is available through a factory
@@ -89,10 +107,14 @@ __[Click me for the demo!](https://www.figma.com/file/U0r2xmu9Fyja9gI72Z8CTx/Eas
 7. All 11 tasks have been finished
 	---> Result: a navigable app that has a database filled with some
 	     mock data
-	     
-Up next for Sprint 2: Cleanup, polishing of UI, OCR, statistics, filter..
 
 ## Sprint 2 - Overview
+
+### UI
+
+Result of sprint 2 was a complete rewrite of the application. Part of the rewrite is a new, more polished layout. You can find a small demo video of the current state of the application here:
+
+[Demo-Video](https://github.com/mobileappdevhm20/team-project-team_6/blob/media/res_img/demo.m4v)
 
 ### Issues 
 
@@ -118,7 +140,7 @@ Up next for Sprint 2: Cleanup, polishing of UI, OCR, statistics, filter..
 
 ### Bugs
 
-[Click here to see all bugs we fixed](https://github.com/mobileappdevhm20/team-project-team_6/issues?q=is%3Aissue+label%3Abug)
+[Click here to see all bugs that were fixed](https://github.com/mobileappdevhm20/team-project-team_6/issues?q=is%3Aissue+label%3Abug)
 
 
 ### Important pull requests
@@ -137,7 +159,7 @@ Up next for Sprint 2: Cleanup, polishing of UI, OCR, statistics, filter..
 
 ### Conclusion
 
-1. Started with a sprint backlog of 16 Issues
+1. Started with a sprint backlog of 16 issues
 2. Different components contributed by different team-members
 	2.1. Significant overhead in merging/keeping everything in sync
 3. Rewrote the whole app UI because, the prototype of Sprint 1 wasn't sustainable enough.
