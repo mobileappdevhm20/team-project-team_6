@@ -1,3 +1,5 @@
+![Banner](https://github.com/mobileappdevhm20/team-project-team_6/blob/media/res_img/EaysbillFeatureGraphic_banner.png)
+
 # 	:receipt: :euro:	 __EasyBill__ 	 :euro:	 :receipt:
 [![codecov](https://codecov.io/gh/mobileappdevhm20/team-project-team_6/branch/develop/graph/badge.svg)](https://codecov.io/gh/mobileappdevhm20/team-project-team_6)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
@@ -25,7 +27,7 @@ EasyBill helps you digitize, catalog and filter your bills and thus is the next 
 
 We used [StoryboardThat](https://www.storyboardthat.com/) to create a storyboard for our app:
 
-![Storyboard](../media/res_img/digital-bill-highres.png "Storyboard")
+![Storyboard](https://github.com/mobileappdevhm20/team-project-team_6/blob/media/res_img/digital-bill-highres.png "Storyboard")
 
 ## Prototype
 
