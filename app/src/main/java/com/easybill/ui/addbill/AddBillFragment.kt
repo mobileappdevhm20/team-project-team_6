@@ -24,7 +24,6 @@ import com.easybill.R
 import com.easybill.data.model.Bill
 import com.easybill.data.model.BillHeader
 import com.easybill.data.model.BillItem
-import com.easybill.misc.generateFakeBills
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
 import com.google.mlkit.vision.text.TextRecognition
