@@ -24,7 +24,6 @@ import com.easybill.R
 import com.easybill.data.model.Bill
 import com.easybill.data.model.BillHeader
 import com.easybill.data.model.BillItem
-import com.easybill.misc.generateFakeBills
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
 import com.google.mlkit.vision.text.TextRecognition
@@ -70,22 +69,6 @@ class AddBillFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_add, container, false)
-
-        val deleteButton: Button = root.findViewById(R.id.delete_all_bills)
-        deleteButton.setOnClickListener {
-            val bills = viewModel.bills.value
-            if (bills != null)
-                for (bill in bills)
-                    viewModel.deleteBillById(bill.header.headerId)
-        }
-
-        val generateButton: Button = root.findViewById(R.id.generate_random_bills)
-        generateButton.setOnClickListener {
-            val bills = generateFakeBills(100)
-            for (bill in bills)
-                viewModel.addBill(bill)
-        }
-
         val cameraButton: Button = root.findViewById(R.id.camera_button)
         cameraButton.setOnClickListener { openCamera() }
 
